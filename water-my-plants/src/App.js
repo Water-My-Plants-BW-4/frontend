@@ -9,6 +9,7 @@ function App() {
        <PrivateRoute path="/myplant" component={PlantPage} />
 
 
+
     </div>
   );
 }
