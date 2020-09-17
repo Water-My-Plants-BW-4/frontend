@@ -12,6 +12,7 @@ const PlantPage = () => {
 
 //------FRONT-END I will work here--------
 
+
     return(
      <>
      {/* plantlist component will be added here
