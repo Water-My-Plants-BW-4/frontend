@@ -3,8 +3,14 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const NavContainer = styled.div`
+    height: 70px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin: 10px 10px 0 10px;
+    background-color: lightgray;
+    border-radius: 20px;
+
     h1 {
         color: green;
         font-size: 1.5rem;
@@ -14,13 +20,25 @@ const NavContainer = styled.div`
         margin: 2rem;
     }
     .nav {
+
         display: flex;
         margin: 20px;
+        
         a {
+          color: black;
             text-decoration: none;
             margin: 20px;
+
+            &:hover{
+              color: gray;
+          }
         }
-    }
+        
+        a.active{
+          color: gray;
+          background: lightgray;
+      }
+   }
 }
 `;
 
@@ -29,8 +47,8 @@ const Header = (props) => {
     <NavContainer>
       <h1>Water My Plants</h1>
       <div className="nav">
-        <NavLink to="/login">Login</NavLink>
-        <NavLink to="/signup">SignUp</NavLink>
+        <NavLink className="link" activeClassName="active" to="/login">Login</NavLink>
+        <NavLink className="link" activeClassName="active" to="/signup">SignUp</NavLink>
       </div>
     </NavContainer>
   );

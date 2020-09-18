@@ -1,12 +1,12 @@
 import React from "react";
 import "./App.css";
 import { Route } from "react-router-dom";
-import Header from "./components/Header";
+import Header from "../src/components/Header";
 import { UserContext } from "./context/UserContext";
 import AddPlantsForm from "./components/AddPlantsForm";
 import UserForm from "./components/UserForm";
 import PrivateRoute from "./utils/PrivateRoute";
-import PlantPage from "./components";
+import PlantPage from "../src/components/PlantPage";
 
 function App() {
   return (
