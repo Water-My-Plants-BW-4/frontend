@@ -1,21 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 
 const initialState = {
     username: "",
-    password: ""
+    password:""
 }
 
 const Login = () => {
-  const [credentials, setCredentials] = useState(initialState)
-  
+    const [credentials, setCredentials] = useState(initialState)
+   
+
+    //Post request for the token will go here
+
+    const handleChanges = (e) => {
+        e.persist();
+     setCredentials({ ...credentials,
+         [e.target.name]: e.target.value
+        })
+    };
+
     return(
        <>
         <form>
-         <input name="username" value="" onChange=""/>
+         <input 
+         type="text" 
+         name="username" 
+         value={credentials.username}
+         onChange={handleChanges} />
 
-         <input name="password" value="" onChange=""/>
-
+         <input 
+         type="text" 
+         name="password" 
+         value={credentials.password} 
+         onChange={handleChanges} />
+         
+         <button type="submit">Login</button>
         </form>
 
        </>
