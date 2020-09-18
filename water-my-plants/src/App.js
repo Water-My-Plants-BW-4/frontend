@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { Route } from "react-router-dom";
 import Header from "../src/components/Header";
@@ -8,18 +8,19 @@ import UserForm from "./components/UserForm";
 import PrivateRoute from "./utils/PrivateRoute";
 import PlantPage from "../src/components/PlantPage";
 
+
 function App() {
+  const [user, setUser] = useState([]);
   return (
     <div className="App">
       <>
         <Header />
-        <UserContext.Provider>
+        <UserContext.Provider value={(user, setUser)}>
           <PrivateRoute exact path="/userInfo" component={UserForm} />
-          <PrivateRoute exact path="/addPlants" component={AddPlantsForm} />
+          <Route exact path="/addPlants" component={AddPlantsForm} />
         </UserContext.Provider>
-    <PrivateRoute path="/myplant" component={PlantPage} />
+        <PrivateRoute path="/myplant" component={PlantPage} />
       </>
-
     </div>
   );
 }
