@@ -11,22 +11,22 @@ import PlantPage from "../src/components/PlantPage";
 
 
 function App() {
-  const [data, setData] = useState([])   //Data that will be passed to all components as value.
-
-  // FE-1: Please add routes below in order display login
+  const [user, setUser] = useState([]);
 
   return (
     <div className="App">
       <>
         <Header />
-    
-        <UserContext.Provider>
-          <PrivateRoute exact path="/userInfo" component={UserForm} />
-          <PrivateRoute exact path="/addPlants" component={AddPlantsForm} />
-        </UserContext.Provider>
-      <PrivateRoute path="/myplant" component={PlantPage} />
-      </>
 
+        <UserContext.Provider value={(user, setUser)}>
+
+          <PrivateRoute exact path="/userInfo" component={UserForm} />
+          <Route exact path="/addPlants" component={AddPlantsForm} />
+        </UserContext.Provider>
+
+        <PrivateRoute path="/myplant" component={PlantPage} />
+
+      </>
     </div>
   );
 }
