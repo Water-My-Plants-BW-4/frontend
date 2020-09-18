@@ -9,17 +9,23 @@ import PrivateRoute from "./utils/PrivateRoute";
 import PlantPage from "../src/components/PlantPage";
 
 
+
 function App() {
   const [user, setUser] = useState([]);
+
   return (
     <div className="App">
       <>
         <Header />
+
         <UserContext.Provider value={(user, setUser)}>
+
           <PrivateRoute exact path="/userInfo" component={UserForm} />
           <Route exact path="/addPlants" component={AddPlantsForm} />
         </UserContext.Provider>
+
         <PrivateRoute path="/myplant" component={PlantPage} />
+
       </>
     </div>
   );
