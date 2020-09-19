@@ -117,6 +117,7 @@ const LoginWrapper = styled.div`
 
    :focus{
     border-bottom: 2px solid lightgray;
+    background-color: lightgray;
     
    }
   }
