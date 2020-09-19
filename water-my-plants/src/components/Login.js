@@ -17,7 +17,7 @@ const Login = () => {
 //        .then(res => {
         //    localStorage.setItem("token", res.data.payload)
 //            console.log(res)
-            //    push(/Plantpage)
+            //    push(/myPlant)
            
 //        })
 //        .catch(err => console.log(err))
@@ -35,6 +35,7 @@ const Login = () => {
   }
     return(
        <LoginWrapper>
+         <h1>SIGN IN</h1>
        
         <form>
         <div className="childrenDiv">
@@ -74,9 +75,17 @@ const LoginWrapper = styled.div`
   justify-content: center;
   justify-content: space-evenly;
   width: 100%;
-  height: 500px;
+  height: 200px;
   font-size: 30px;
   box-sizing: border-box;
+  margin-top: 200px;
+
+  h1 {
+    text-align: center;
+    margin: 10px 0 -60px 0;
+    font-size: 2.3rem;
+    color: green;
+  }
 
   .childrenDiv{
     box-sizing: border-box;
@@ -94,6 +103,7 @@ const LoginWrapper = styled.div`
     margin-top: 50px;
     width: 240px;
     height: 30px;
+    padding: 0 0 30px 0;
     text-decoration: none;
     text-align: center;
     font-size: 20px;

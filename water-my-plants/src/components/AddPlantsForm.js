@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axiosWithAuth from "../utils/axiosWithAuth";
-import { UserContext } from '../context/UserContext';
-import PlantsCard from "./PlantsCard"
+// import { PlantsContext } from '../context/UserContext';
+import PlantsCard from "./PlantsCard";
+
 
 const AddPlantsForm = () => {
+    //aftert the useContext Plants is implemented, we dont need this anymore
     const [plants, setPlants] = useState([]);
-    const { user } = useContext(UserContext);
+     //const { plants } = useContext(PlantsContext);
 
     const fetchPlants = () => {
         axiosWithAuth()
@@ -26,7 +28,7 @@ const AddPlantsForm = () => {
     return (
         <>
         <div>
-            <PlantsCard user={user} plants={plants} fetchPlants={fetchPlants} />
+            <PlantsCard plants={plants} fetchPlants={fetchPlants} />
         </div>
         </>
     )
