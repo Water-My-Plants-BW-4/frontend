@@ -22,7 +22,7 @@ function App() {
 
       <UserContext.Provider value={(user, setUser)}>
         <Route exact path="/login" component={Login} />
-        <PrivateRoute exact path="/userInfo" component={UserForm} />
+        <Route exact path="/userInfo" component={UserForm} />
         <Route path="/signup" component={SignupForm} />
       </UserContext.Provider>
       {/* will change Route to PrivateRoute when login authentication is modified */}
@@ -36,9 +36,11 @@ const AppWrapper = styled.div`
   overflow: hidden;
   margin: 0;
   width: 100%;
-  height: 1000px;
+  height: 1400px;
   background-image: url(${img});
-  background-repeat: repeat;
+  background-size: cover;
+
+  background-repeat: no-repeat;
   background-position: center;
   box-sizing: border-box;
   outline: none;
