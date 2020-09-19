@@ -7,25 +7,27 @@ import AddPlantsForm from "./components/AddPlantsForm";
 import UserForm from "./components/UserForm";
 import PrivateRoute from "./utils/PrivateRoute";
 import PlantPage from "../src/components/PlantPage";
-import SignupForm from "./components/SignupForm";
+import SignupForm from "./components/SignUpForm";
 import styled from "styled-components";
 import img from "./img/greenleave.jpg";
 
 function App() {
   const [user, setUser] = useState([]);
+  //Bhawnish will use this for his context API
+  const [plants, setPlants] = useState([]);
 
   return (
     <AppWrapper>
       <Header />
 
       <UserContext.Provider value={(user, setUser)}>
-        <Route exact path="/" component={Login} />
         <Route exact path="/login" component={Login} />
         <PrivateRoute exact path="/userInfo" component={UserForm} />
         <Route path="/signup" component={SignupForm} />
       </UserContext.Provider>
-
-      <PrivateRoute path="/myplant" component={PlantPage} />
+      {/* will change Route to PrivateRoute when login authentication is modified */}
+      <Route path="/addPlants" component={AddPlantsForm} />
+      <Route path="/myplant" component={PlantPage} />
     </AppWrapper>
   );
 }
@@ -40,7 +42,7 @@ const AppWrapper = styled.div`
   background-position: center;
   box-sizing: border-box;
   outline: none;
-  font-family: "Karma", sans-serif ;
+  font-family: "Karma", sans-serif;
 `;
 
 export default App;

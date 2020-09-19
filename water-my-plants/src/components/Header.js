@@ -47,8 +47,18 @@ const Header = (props) => {
     <NavContainer>
       <h1>Water My Plants</h1>
       <div className="nav">
-        <NavLink className="link" activeClassName="active" to="/login">Login</NavLink>
-        <NavLink className="link" activeClassName="active" to="/signup">SignUp</NavLink>
+        <NavLink className="link" activeClassName="active" to="/login">
+          Login
+        </NavLink>
+        <NavLink className="link" activeClassName="active" to="/signup">
+          SignUp
+        </NavLink>
+        <a
+        // Here we will put link UI href=""
+        >
+          <span>Home</span>
+        </a>
+        <NavLink to="/myPlant">Profile</NavLink>
       </div>
     </NavContainer>
   );
