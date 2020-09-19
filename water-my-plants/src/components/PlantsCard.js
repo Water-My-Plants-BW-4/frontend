@@ -40,7 +40,7 @@ const PlantsCard = ({plants, fetchPlants, user}) => {
     
     return (
         <>
-        <h1>Please Add A New Plant Remider Here</h1>
+        <h1>Please Add A New Plant Reminder Here</h1>
         <form onSubmit={handleSubmit}>
         <input
           type="text"

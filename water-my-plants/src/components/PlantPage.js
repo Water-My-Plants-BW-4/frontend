@@ -15,8 +15,8 @@ const PlantPage = () => {
 
     return(
      <>
-     {/* plantlist component will be added here
-     <PlantList component></PlantList>
+     {/* PlantCard component will be added here
+     <PlantCard component></PlantList>
       */}
     </>
     )
