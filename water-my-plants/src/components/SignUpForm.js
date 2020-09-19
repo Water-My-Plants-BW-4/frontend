@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Switch, Route } from 'react-router-dom';
+
 import Form from './Form';
 import SignupSchema from './SignupSchema';
 import * as Yup from 'yup';
-import './App.css';
+
 
 const signupForm = {
   name: '',
@@ -66,8 +66,6 @@ export default function SignupForm() {
 
   return (
     <div>
-      <Switch>
-        <Route path='/signup'>
           <Form
           values={formValues}
           onSubmit={onSubmit}
@@ -84,8 +82,6 @@ export default function SignupForm() {
               )
             })
           }
-        </Route>
-      </Switch> 
     </div>
   );
 }

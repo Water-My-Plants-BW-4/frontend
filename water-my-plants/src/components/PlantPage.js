@@ -1,7 +1,7 @@
 //This component will be the parent component 
-//which will display PlantList component as well as the AddMyPlant component
+import AddMyPlant from "./AddPlantsForm";
+import PlantsCard from "./PlantsCard";
 import React, {useState, useEffect } from "react";
-import axios from "axios";
 
 //useState is just added as a placeholder, as we will implement context API
 
@@ -16,7 +16,7 @@ const PlantPage = () => {
     return(
      <>
      {/* PlantCard component will be added here
-     <PlantCard component></PlantList>
+     <PlantCard ></PlantCard>
       */}
     </>
     )
