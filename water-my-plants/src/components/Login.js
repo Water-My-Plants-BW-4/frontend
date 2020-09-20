@@ -1,74 +1,139 @@
-import React, { useImperativeHandle, useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
-import {useHistory} from "react-router-dom";
+import * as Yup from "yup";
+import { useHistory, Link } from "react-router-dom";
 import axiosWithAuth from "../utils/axiosWithAuth";
-
-const initialState = {
-    username: "",
-    password: ""
-}
+import { UserContext } from "../context/UserContext";
 
 const Login = () => {
-  const [credentials, setCredentials] = useState(initialState)
-//   const { push}  = useHistory();
+  const { user, setUser } = useContext(UserContext);
+  const defaultState = {
+    username: "",
+    password: "",
+  };
 
-//    const onSubmit = (e) => {
-//        axiosWithAuth().post() - Post request to set up the token in localstorage
-//        .then(res => {
-        //    localStorage.setItem("token", res.data.payload)
-//            console.log(res)
-            //    push(/myPlant)
-           
-//        })
-//        .catch(err => console.log(err))
+  const [formState, setFormState] = useState(defaultState);
+  const [errors, setErrors] = useState({ ...defaultState, terms: "" });
+  const { push } = useHistory();
 
-//        setCredentials({
-//            username: "",
-//            password: ""
-//        })
-//    }
-   
-  const handleChanges = (e) => {
+  //this is the formState schema
+
+  let formSchema = Yup.object().shape({
+    username: Yup.string().required("Please provide username."),
+    password: Yup.string().required("Please enter a correct Password"),
+  });
+
+ 
+  
+
+  //this is use for the onsubmit function
+  const formSubmit = (e) => {
+    e.preventDefault();
+    //I added axios data here so it does not fire a lot when its outside
+    console.log("Form Submitted");
+    // to reset form
+    setFormState({
+      username: "",
+      password: "",
+    });
+
+    axiosWithAuth()
+      .post("/login", formState)
+      .then((res) => {
+        const data = res.data;
+        // console.log("form submitted success", data);
+        localStorage.setItem("token", data.token);
+        // localStorage.setItem('userId', data.id);
+        //I set setUser here so it can retrieve the user data to the DOM
+        setUser(data);
+        push("/myplant");
+      })
+      .catch((err) => {
+        console.log("This is the Error", err);
+      });
+  };
+  
+
+  const validateChange = (e) => {
+    //this allows react to keep the event object to play nice with async op
     e.persist();
-    setCredentials({...credentials, 
-    [e.target.name]: e.target.value})
-  }
-    return(
-       <LoginWrapper>
-         <h1>SIGN IN</h1>
-       
-        <form>
-        <div className="childrenDiv">
-     
+    // reach allows us to check a specific value of the schema
+    Yup.reach(formSchema, e.target.name)
+      .validate(e.target.value)
+      .then((res) =>
+        setErrors({
+          ...errors,
+          [e.target.name]: "",
+        })
+      )
+      .catch((error) =>
+        setErrors({
+          ...errors,
+          [e.target.name]: error.errors[0],
+        })
+      );
+  };
 
-         <input
-         placeholder="Username"
-          name="username"
-          value={credentials.username} 
-          onChange={handleChanges}
+  // onChange function
+  const handleChange = (e) => {
+    //ternary operator to determine the form value
+    const value =
+      e.target.type === "checkbox" ? e.target.checked : e.target.value;
+    setFormState({
+      ...formState,
+      [e.target.name]: value,
+    });
+    validateChange(e);
+  };
+
+  
+
+  return (
+    <LoginWrapper>
+      <form onSubmit={formSubmit} className="childrenDiv">
+        <h1>LOG IN</h1>
+        <label htmlFor="username">
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            onChange={handleChange}
+            value={formState.username}
+            label="Username"
+            errors={errors}
           />
-
-
-         
-         <input 
-         placeholder="Password"
-         type="password"
-         name="password" 
-         value={credentials.password}  
-         onChange={handleChanges}
-         />
-        
-         <button type="submit">Login</button>
-         </div>
-        </form>
-        
-        </LoginWrapper>
-
-    );
-
-}
+          {errors.username.length !== 0 && (
+            <p className="error">{errors.username}</p>
+          )}
+        </label>
+        <label htmlFor="password">
+          <input
+            //create the hide and show password from this link https://github.com/zakangelle/react-password-mask
+            type="password"
+            name="password"
+            onChange={handleChange}
+            placeholder="Password"
+            value={formState.password}
+            label="Password"
+            errors={errors}
+          />
+          {errors.password.length !== 0 && (
+            <p className="error">{errors.password}</p>
+          )}
+        </label>
+        <button>SUBMIT</button>
+        <button onClick={() => localStorage.removeItem('token')} id="log">Log Out</button>
+        <div className="new-account">
+          <p>Not registered yet?</p>
+          <Link to="/signup">Register Here</Link>
+        </div>
+      </form>
+    </LoginWrapper>
+  );
+};
 
 const LoginWrapper = styled.div`
+
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -82,12 +147,31 @@ const LoginWrapper = styled.div`
 
   h1 {
     text-align: center;
-    margin: 10px 0 -60px 0;
+    margin: 120px 0 -5px 0;
     font-size: 2.3rem;
     color: green;
   }
 
-  .childrenDiv{
+  p {
+    font-size: 1.5rem;
+  }
+
+  .new-account {
+    margin-top: 20px;
+    a {
+      text-decoration: none;
+      color: black;
+      padding-left: 41px;
+      font-size: 1.2rem;
+    }
+  }
+
+  .error {
+    font-size: 0.9rem;
+    color: red;
+  }
+
+  .childrenDiv {
     box-sizing: border-box;
 
     display: flex;
@@ -99,8 +183,8 @@ const LoginWrapper = styled.div`
     width: auto;
     height: 400px;
   }
-  button{
-    margin-top: 50px;
+  button {
+    margin: 50px 5px 0 0;
     width: 240px;
     height: 30px;
     padding: 0 0 30px 0;
@@ -111,27 +195,28 @@ const LoginWrapper = styled.div`
     outline: none;
     font-family: "Bebas Neue", cursive;
   }
+  #log {
+    margin-top: 10px;
+  }
 
-  input, textarea{
-    
+  input,
+  textarea {
     outline: none;
     border: 0;
     margin: 0;
     text-align: center;
     font-size: 20px;
-   margin-top: 20px;
-   width: 200px;
-   height: 50px;
-   transition: all 0.9s;
-   background-color: transparent;
+    margin-top: 20px;
+    width: 200px;
+    height: 50px;
+    transition: all 0.9s;
+    background-color: transparent;
 
-   :focus{
-    border-bottom: 2px solid lightgray;
-    background-color: lightgray;
-    
-   }
+    :focus {
+      border-bottom: 2px solid lightgray;
+      background-color: lightgray;
+    }
   }
-
-`
+`;
 
 export default Login;

@@ -20,14 +20,14 @@ function App() {
     <AppWrapper>
       <Header />
 
-      <UserContext.Provider value={(user, setUser)}>
+      <UserContext.Provider value={{user, setUser}}>
         <Route exact path="/login" component={Login} />
         <PrivateRoute exact path="/userInfo" component={UserForm} />
         <Route path="/signup" component={SignupForm} />
       </UserContext.Provider>
       {/* will change Route to PrivateRoute when login authentication is modified */}
-      <Route path="/addPlants" component={AddPlantsForm} />
-      <Route path="/myplant" component={PlantPage} />
+      <PrivateRoute path="/addPlants" component={AddPlantsForm} />
+      <PrivateRoute path="/myplant" component={PlantPage} />
     </AppWrapper>
   );
 }
@@ -38,7 +38,9 @@ const AppWrapper = styled.div`
   width: 100%;
   height: 1000px;
   background-image: url(${img});
-  background-repeat: repeat;
+  background-size: cover;
+
+  background-repeat: no-repeat;
   background-position: center;
   box-sizing: border-box;
   outline: none;

@@ -2,12 +2,14 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import PlantList from "./PlantList";
 
 const PlantsListWrapper = styled.div`
 
+
 h1 {
   text-align: center;
-  margin: 60px 0 -60px 0;
+  margin: 60px 0 10px 0;
   font-size: 2.3rem;
   color: green;
 }
@@ -38,6 +40,7 @@ const PlantPage = () => {
   const [plantsList, setPlantList] = useState([]);
 
   //------FRONT-END I will work here--------
+  
 
   return (
     <PlantsListWrapper>
@@ -57,6 +60,7 @@ const PlantPage = () => {
       {/* PlantCard component will be added here
      <PlantCard ></PlantCard>
       */}
+      <PlantList />
     </PlantsListWrapper>
   );
 };

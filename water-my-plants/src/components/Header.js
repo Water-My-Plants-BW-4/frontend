@@ -54,11 +54,11 @@ const Header = (props) => {
           SignUp
         </NavLink>
         <a
-        // Here we will put link UI href=""
+          href=" https://watermyplantsbw4.netlify.app"
         >
-          <span>Home</span>
+          <span>About Us</span>
         </a>
-        <NavLink to="/myPlant">Profile</NavLink>
+        <NavLink to="/myPlant">Home</NavLink>
       </div>
     </NavContainer>
   );
