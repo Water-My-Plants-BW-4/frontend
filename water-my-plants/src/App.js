@@ -22,12 +22,12 @@ function App() {
 
       <UserContext.Provider value={(user, setUser)}>
         <Route exact path="/login" component={Login} />
-        <Route exact path="/userInfo" component={UserForm} />
+        <PrivateRoute exact path="/userInfo" component={UserForm} />
         <Route path="/signup" component={SignupForm} />
       </UserContext.Provider>
       {/* will change Route to PrivateRoute when login authentication is modified */}
-      <Route path="/addPlants" component={AddPlantsForm} />
-      <Route path="/myplant" component={PlantPage} />
+      <PrivateRoute path="/addPlants" component={AddPlantsForm} />
+      <PrivateRoute path="/myplant" component={PlantPage} />
     </AppWrapper>
   );
 }

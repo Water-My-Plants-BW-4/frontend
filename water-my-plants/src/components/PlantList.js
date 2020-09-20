@@ -6,9 +6,10 @@ import { Link } from "react-router-dom";
 
 const PlantlistContainer = styled.div`
   margin: 20px;
+
   p {
     text-align: center;
-    margin: 80px 0 -60px 0;
+    margin: 60px 0 -60px 0;
     font-size: 1.9rem;
     color: gray;
   }

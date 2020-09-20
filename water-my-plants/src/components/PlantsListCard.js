@@ -4,9 +4,9 @@ import styled from "styled-components";
 const PlantsCardWrapper = styled.div`
 .list {
     border: 2px solid green;
-    border-radius: 50px;
+    border-radius: 80px;
     width: 500px;
-    height: 350px;
+    height: 300px;
     margin: 30px 368px;
     padding: -90px 0 40px 0;
 }

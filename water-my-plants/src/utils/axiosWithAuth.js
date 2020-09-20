@@ -2,9 +2,8 @@ import axios from "axios";
 
 const axiosWithAuth = () => {
   const token = localStorage.getItem("token");
-  console.log(`token is ${token}`);
   return axios.create({
-    // baseURL: "I will add here the URL from BackEnd",
+    baseURL: "https://water-my-plants-ii.herokuapp.com/",
     headers: {
       Authorization: token,
     },

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import * as Yup from "yup";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
@@ -83,62 +82,30 @@ const SignUpContainer = styled.div`
   }
 `;
 
-const signSchema = Yup.object().shape({
-  name: Yup.string().required("Please enter your username."),
-  email: Yup.string()
-    .required("Please enter your email.")
-    .matches(/^[0-9]{10}$/),
-  password: Yup.string()
-    .required("Please enter your password.")
-    .matches(
-      /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-      "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
-    )
-    .min(6),
-  comfirmpassword: Yup.string()
-    .required("Please recomfirm your password.")
-    .matches(
-      /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-      "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
-    )
-    .min(6),
-});
+
 
 const defaultFormState = {
   username: "",
   email: "",
   password: "",
   comfirmpassword: "",
+  phoneNumber: ""
 };
 
-const defaultErrorState = {
-  username: "",
-  email: "",
-  password: "",
-  comfirmpassword: "",
-};
+
 
 let reg = {
   username: "",
   password: "",
+  phoneNumber: ""
 };
 
 const SignUp = (props) => {
   const [formState, setFormState] = useState(defaultFormState);
-  const [errors, setErrors] = useState(defaultErrorState);
+
   const history = useHistory();
 
-  const val = (e) => {
-    e.persist(); //<--- this guy
-    Yup.reach(signSchema, e.target.name)
-      .validate(e.target.value)
-      .then((valid) => setErrors({ ...errors, [e.target.name]: "" }))
-      .catch((err) => {
-        setErrors({ ...errors, [e.target.name]: err.errors[0] });
-        console.log("this error", errors);
-      });
-    console.log(e.target.name);
-  };
+
   // redo the handle
   const handleChange = (e) => {
     console.log(e.target.name);
@@ -146,17 +113,18 @@ const SignUp = (props) => {
       ...formState,
       [e.target.name]: e.target.value,
     });
-    val(e);
+    
   };
   const handleSumbmit = (e) => {
     e.preventDefault();
     reg = {
-      username: formState.name,
+      username: formState.username,
       password: formState.password,
+      phoneNumber: formState.phoneNumber
     };
     console.log(reg, formState);
     axiosWithAuth()
-      .post("auth/register", reg)
+      .post("/register", reg)
       .then((res) => {
         console.log(res);
         history.push("/login");
@@ -171,11 +139,11 @@ const SignUp = (props) => {
         <label>
           <input
             type="text"
-            name="name"
+            name="username"
             onChange={handleChange}
             placeholder="Username"
-            value={formState.name}
-            errors={errors}
+            value={formState.uernamename}
+           
           />
         </label>
         <label>
@@ -203,6 +171,15 @@ const SignUp = (props) => {
             onChange={handleChange}
             placeholder="Confirm Password"
             value={formState.comfirmpassword}
+          />
+          </label>
+          <label>
+          <input
+            type="phoneNumber"
+            name="phoneNumber"
+            onChange={handleChange}
+            placeholder="Phone Number"
+            value={formState.phoneNumber}
           />
         </label>
         <button type="submit"> Submit </button>
