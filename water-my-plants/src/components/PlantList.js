@@ -4,6 +4,7 @@ import PlantsListCard from "./PlantsListCard";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+
 const PlantlistContainer = styled.div`
   margin: 20px;
 
@@ -17,35 +18,21 @@ const PlantlistContainer = styled.div`
   
 `;
 
-const dummyData = [{
- 
-	nickname: "Orchids", 
-	species: "Raji", 
-	frequency_value: "3", 
-	frequency_range: "days",
-},
-{
-    nickname: "Flowers", 
-	species: "Red", 
-	frequency_value: "5", 
-	frequency_range: "days",
-
-}]
 
 const PlantList = () => {
-  const [plantList, setPlantList] = useState(dummyData);
+  const [plantList, setPlantList] = useState([]);
 
-//   useEffect(() => {
-//     axiosWithAuth()
-//       .get()//use the backend here
-//       .then((res) => {
-//         console.log("this is the response:", res);
-//         setPlantList(res.data);
-//       })
-//       .catch((err) => {
-//         console.error("the Erros is:", err);
-//       });
-//   }, []);
+  useEffect(() => {
+    axiosWithAuth()
+      .get("/plants")
+      .then((res) => {
+        console.log("this is the response:", res);
+        setPlantList(res.data);
+      })
+      .catch((err) => {
+        console.error("the Erros is:", err);
+      });
+  }, []);
 
   return (
     <PlantlistContainer>

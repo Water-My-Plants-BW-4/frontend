@@ -6,7 +6,7 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 import { UserContext } from "../context/UserContext";
 
 const Login = () => {
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const defaultState = {
     username: "",
     password: "",
@@ -43,9 +43,9 @@ const Login = () => {
         const data = res.data;
         // console.log("form submitted success", data);
         localStorage.setItem("token", data.token);
-        localStorage.setItem("tokens", data.id);
+        // localStorage.setItem('userId', data.id);
         //I set setUser here so it can retrieve the user data to the DOM
-        // setUser(data.token);
+        setUser(data);
         push("/myplant");
       })
       .catch((err) => {
@@ -133,6 +133,7 @@ const Login = () => {
 };
 
 const LoginWrapper = styled.div`
+
   display: flex;
   flex-direction: column;
   align-content: center;

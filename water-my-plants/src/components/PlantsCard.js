@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 // import { PlantContext } from '../context/UserContext';
 import styled from "styled-components";
@@ -29,7 +29,7 @@ const PlantsCardWrapper = styled.div`
     color: green;
   }
 
-  .childrenDiv{
+  .childrenDiv {
     box-sizing: border-box;
 
     display: flex;
@@ -41,7 +41,7 @@ const PlantsCardWrapper = styled.div`
     width: auto;
     height: 400px;
   }
-  button{
+  button {
     margin-top: 40px;
     width: 280px;
     height: 40px;
@@ -54,68 +54,65 @@ const PlantsCardWrapper = styled.div`
     font-family: "Bebas Neue", cursive;
   }
 
-  input, textarea{
-    
+  input,
+  textarea {
     outline: none;
     border: 0;
     margin: 0;
     text-align: center;
     font-size: 20px;
-   margin-top: 20px;
-   width: 200px;
-   height: 50px;
-   transition: all 0.9s;
-   background-color: transparent;
+    margin-top: 20px;
+    width: 200px;
+    height: 50px;
+    transition: all 0.9s;
+    background-color: transparent;
 
-   :focus{
-    border-bottom: 2px solid lightgray;
-    background-color: lightgray;
-    
-   }
+    :focus {
+      border-bottom: 2px solid lightgray;
+      background-color: lightgray;
+    }
   }
-
-`
+`;
 
 const initialValue = {
- 
-	nickname: "", 
-	species: "", 
-	frequency_value: "", 
-	frequency_range: "",
-}
+  nickname: "",
+  species: "",
+  frequency_value: "",
+  frequency_range: "",
+};
 
-const PlantsCard = ({plants, fetchPlants, user}) => {
-    const [newPlants, setNewPlants] = useState(initialValue);
+const PlantsCard = ({ plants, fetchPlants, user }) => {
+  const [newPlants, setNewPlants] = useState(initialValue);
 
-    // const { plants } = useContext(UserContext);
+  // const { plants } = useContext(UserContext);
 
-    const handleChanger = (e) => {
-        setNewPlants({ ...newPlants, [e.target.name]: e.target.value });
-      };
+  const handleChanger = (e) => {
+    setNewPlants({ ...newPlants, [e.target.name]: e.target.value });
+  };
 
-      const handleSubmit = (e) => {
-        console.log("your plants:", plants);
-        e.preventDefault();
-        axiosWithAuth()
-          .post( newPlants) //I will add here the info from backend
-          .then((res) => {
-            console.log("The response for newPlants is:", res);
-            setNewPlants(res.data);
-            fetchPlants();
-          })
-          .catch((err) => console.log("NewPlants data error is:", err.message));
-        setNewPlants({
-            nickname: "", 
-            species: "", 
-            frequency_value: "", 
-            frequency_range: "",
-        });
-      }; 
-    
-    return (
-        <PlantsCardWrapper>
-        <h1>Please Add A New Plant Reminder Here</h1>
-        <form className="childrenDiv" onSubmit={handleSubmit}>
+  const handleSubmit = (e) => {
+    console.log("your plants:", plants);
+    e.preventDefault();
+    axiosWithAuth()
+      .post(newPlants) //I will add here the info from backend
+      .then((res) => {
+        console.log("The response for newPlants is:", res);
+        setNewPlants(res.data);
+        fetchPlants();
+      })
+      .catch((err) => console.log("NewPlants data error is:", err.message));
+    setNewPlants({
+      nickname: "",
+      species: "",
+      frequency_value: "",
+      frequency_range: "",
+    });
+  };
+
+  return (
+    <PlantsCardWrapper>
+      <h1>Please Add A New Plant Reminder Here</h1>
+      <form className="childrenDiv" onSubmit={handleSubmit}>
         <input
           type="text"
           name="nickname"
@@ -150,24 +147,22 @@ const PlantsCard = ({plants, fetchPlants, user}) => {
 
         <button>Add A New Plant Reminder</button>
       </form>
-
-      <h3>Your New Plants Reminder are:</h3> {/* inside here after welcome goes {user.name} */}
+      <h3>Your New Plants Reminder are:</h3>{" "}
+      {/* inside here after welcome goes {user.name} */}
       <>
-      {plants.map((plant) => (
+        {plants.map((plant) => (
           <li key={plant.id}>
-              <span>
-                  <p>Name: {plant.nickname}</p>
-                  <p>Species: {plant.species}</p>
-                  <p>Frequency Value: {plant.frequency_value}</p>
-                  <p>Frequency Range: {plant.frequency_range}</p>
-              </span>
+            <span>
+              <p>Name: {plant.nickname}</p>
+              <p>Species: {plant.species}</p>
+              <p>Frequency Value: {plant.frequency_value}</p>
+              <p>Frequency Range: {plant.frequency_range}</p>
+            </span>
           </li>
-      ))}
+        ))}
       </>
-        </PlantsCardWrapper>
-
-        
-    )
+    </PlantsCardWrapper>
+  );
 };
 
 export default PlantsCard;

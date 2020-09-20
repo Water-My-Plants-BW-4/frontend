@@ -14,7 +14,7 @@ const SignUpContainer = styled.div`
   height: 200px;
   font-size: 30px;
   box-sizing: border-box;
-  margin-top: 200px;
+  margin-top: 280px;
 
   h1 {
     text-align: center;
@@ -100,7 +100,7 @@ let reg = {
   phoneNumber: ""
 };
 
-const SignUp = (props) => {
+const SignUpForm = (props) => {
   const [formState, setFormState] = useState(defaultFormState);
 
   const history = useHistory();
@@ -192,5 +192,5 @@ const SignUp = (props) => {
   );
 };
 
-export default SignUp;
+export default SignUpForm;
 // axios post request "off/login" end points

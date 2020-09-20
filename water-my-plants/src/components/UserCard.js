@@ -1,7 +1,9 @@
 import React, { useState, useContext } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { UserContext } from "../context/UserContext";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+
 
 const UserWrapper = styled.div`
   display: flex;
@@ -10,14 +12,15 @@ const UserWrapper = styled.div`
   justify-content: center;
   justify-content: space-evenly;
   width: 100%;
-  height: 200px;
+  height: -300px;
   font-size: 30px;
   box-sizing: border-box;
-  margin-top: 200px;
+  margin-top: 100px;
+  margin-bottom: 300px;
 
   h1 {
     text-align: center;
-    margin: 40px 0 10px 0;
+    margin: 40px 0 50px 0;
     font-size: 2.3rem;
     color: green;
   }
@@ -49,7 +52,7 @@ const UserWrapper = styled.div`
     height: 400px;
   }
   button {
-    margin-top: 40px;
+    margin: 40px 0 300px 0;
     width: 280px;
     height: 40px;
     padding: 5px;
@@ -83,19 +86,23 @@ const UserWrapper = styled.div`
 `;
 
 const initialUser = {
+    id: "",
   username: "",
   password: "",
   phoneNumber: "",
 };
 
-const UserCard = ({ user, fetchUser }) => {
+const UserCard = ({user,  fetchUser }) => {
   const [editing, setEditing] = useState(false);
   const [userToEdit, setUserToEdit] = useState(initialUser);
-//   const { user } = useContext(UserContext);
+//   const { user, setUser } = useContext(UserContext);
+
+  let history = useHistory();
 
   const editUser = (edit) => {
     setEditing(true);
     setUserToEdit(edit);
+    fetchUser();
   };
 
   //   const reset = () => {
@@ -104,14 +111,18 @@ const UserCard = ({ user, fetchUser }) => {
   //     fetchUser();
   //   };
 
-  const updateUser = () => {
-    console.log("user id is:", user.id);
+  const updateUser = (e) => {
+      e.preventDefault()
+    console.log("user id is:", userToEdit.id);
+    
     axiosWithAuth()
-      .put(user) // will add here a put for updatefor user
+      .put(`/users/${userToEdit.id}`, userToEdit ) 
       .then((res) => {
         console.log("This is the updateUser Response", res);
-        setUserToEdit(res.data);
-        fetchUser();
+        // setUser(res.data);
+        fetchUser(res.data);
+        history.push("/userInfo")
+
       })
       .catch((err) => {
         console.log("This is the updateUser Error", err.message);
@@ -120,20 +131,18 @@ const UserCard = ({ user, fetchUser }) => {
 
   const deleteUser = (info) => {
     axiosWithAuth()
-      .delete() //This is for the delete for user
+      .delete(`/users/${info.id}`) //This is for the delete for user
       .then((res) => {
         console.log("This is the deleteUser Response", res);
-        setUserToEdit(res.data);
+        // setUser(res.data);
         fetchUser();
+        history.push("/userInfo")
       })
       .catch((err) => {
         console.log("This is the deleteUser Error", err.message);
       });
   };
 
-  const handleChanger = (e) => {
-    setUserToEdit({ ...userToEdit, [e.target.name]: e.target.value });
-  };
 
   console.log("User info: ", user);
 
@@ -147,7 +156,12 @@ const UserCard = ({ user, fetchUser }) => {
             <input
               type="text"
               name="username"
-              onChange={handleChanger}
+              onChange={(e) =>
+                setUserToEdit({
+                  ...userToEdit,
+                  username: e.target.value
+                })
+              }
               placeholder="Username"
               value={userToEdit.username}
             />
@@ -157,7 +171,12 @@ const UserCard = ({ user, fetchUser }) => {
             <input
               type="text"
               name="password"
-              onChange={handleChanger}
+              onChange={(e) =>
+                setUserToEdit({
+                  ...userToEdit,
+                  password: e.target.value
+                })
+              }
               placeholder="password"
               value={userToEdit.password}
             />
@@ -167,7 +186,12 @@ const UserCard = ({ user, fetchUser }) => {
             <input
               type="text"
               name="phoneNumber"
-              onChange={handleChanger}
+              onChange={(e) =>
+                setUserToEdit({
+                  ...userToEdit,
+                  phoneNumber: e.target.value
+                })
+              }
               placeholder="phoneNumber"
               value={userToEdit.phoneNumber}
             />
@@ -181,30 +205,35 @@ const UserCard = ({ user, fetchUser }) => {
             >
               Save
             </button>
-            <button onClick={() => setEditing(false)}>cancel</button>
+            <button onClick={() => setEditing(false)}>Done / Cancel</button>
           </div>
         </form>
       )}
       <h1 id="main-title">User Profile</h1>
       <>
+      
         <div className="info">
+        {[...user].reverse().map((u) => (
+          <div key={u.id}>
           <span>
-            <p>Username: {user.username}</p>
-            <p>Password: {user.password}</p>
-            <p>Phone Number: {user.phoneNumber}</p>
+            <p>Username: {u.username}</p>
+            <p>Password: {u.password}</p>
+            <p>Phone Number: {u.phoneNumber}</p>
           </span>
           <button
-          onClick={(e) => editUser(e)} >
+          onClick={() => editUser(u)} >
             Update
           </button>
           <button
             onClick={(e) => {
               e.stopPropagation();
-              deleteUser(e);
+              deleteUser(u);
             }}
           >
             Delete
           </button>
+          </div>
+        ))}
         </div>
       </>
       

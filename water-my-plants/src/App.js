@@ -20,7 +20,7 @@ function App() {
     <AppWrapper>
       <Header />
 
-      <UserContext.Provider value={(user, setUser)}>
+      <UserContext.Provider value={{user, setUser}}>
         <Route exact path="/login" component={Login} />
         <PrivateRoute exact path="/userInfo" component={UserForm} />
         <Route path="/signup" component={SignupForm} />
@@ -36,7 +36,7 @@ const AppWrapper = styled.div`
   overflow: hidden;
   margin: 0;
   width: 100%;
-  height: 1400px;
+  height: 1000px;
   background-image: url(${img});
   background-size: cover;
 
