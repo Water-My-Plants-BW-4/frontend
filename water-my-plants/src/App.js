@@ -13,9 +13,9 @@ import img from "./img/greenleave.jpg";
 
 function App() {
   const [user, setUser] = useState([]);
-  //Bhawnish will use this for his context API
-  const [plants, setPlants] = useState([]);
 
+
+  
   return (
     <AppWrapper>
       <Header />
@@ -28,6 +28,7 @@ function App() {
       {/* will change Route to PrivateRoute when login authentication is modified */}
       <PrivateRoute path="/addPlants" component={AddPlantsForm} />
       <PrivateRoute path="/myplant" component={PlantPage} />
+
     </AppWrapper>
   );
 }

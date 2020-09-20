@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axiosWithAuth from "../utils/axiosWithAuth";
+import React, { useContext } from "react";
 import PlantsListCard from "./PlantsListCard";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
+import { PlantsContext } from "../context/PlantsContext"
 
 const PlantlistContainer = styled.div`
   margin: 20px;
@@ -20,19 +19,7 @@ const PlantlistContainer = styled.div`
 
 
 const PlantList = () => {
-  const [plantList, setPlantList] = useState([]);
-
-  useEffect(() => {
-    axiosWithAuth()
-      .get("/plants")
-      .then((res) => {
-        console.log("this is the response:", res);
-        setPlantList(res.data);
-      })
-      .catch((err) => {
-        console.error("the Erros is:", err);
-      });
-  }, []);
+  const {plantList, setPlantList} = useContext(PlantsContext)
 
   return (
     <PlantlistContainer>

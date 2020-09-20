@@ -1,8 +1,11 @@
 //This component will be the parent component
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import PlantList from "./PlantList";
+import axiosWithAuth from "../utils/axiosWithAuth";
+import { PlantsContext } from "../context/PlantsContext";
+
 
 const PlantsListWrapper = styled.div`
 
@@ -33,14 +36,24 @@ h1 {
   }
 `;
 
-//useState is just added as a placeholder, as we will implement context API
 
 const PlantPage = () => {
   const [loading, setLoading] = useState(false);
-  const [plantsList, setPlantList] = useState([]);
-
-  //------FRONT-END I will work here--------
+  const [plantList, setPlantList] = useState([]);
   
+  //------FRONT-END I will work here--------
+  useEffect(() => {
+    axiosWithAuth()
+       .get("https://water-my-plants-ii.herokuapp.com/plants")
+       .then((res) => {
+         console.log("this is the response:", res);
+         setPlantList(res.data);
+       })
+       .catch((err) => {
+         console.error("the Erros is:", err);
+       });
+   }, []);
+ 
 
   return (
     <PlantsListWrapper>
@@ -60,8 +73,11 @@ const PlantPage = () => {
       {/* PlantCard component will be added here
      <PlantCard ></PlantCard>
       */}
+      <PlantsContext.Provider value={{plantList, setPlantList}}>
       <PlantList />
+      </PlantsContext.Provider>
     </PlantsListWrapper>
+
   );
 };
 
