@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Route } from "react-router-dom";
 import Login from "./components/Login";
 import Header from "../src/components/Header";
-import { UserContext } from "./context/UserContext";
+import { AuthContext } from "./context/AuthContext";
 import AddPlantsForm from "./components/AddPlantsForm";
 import UserForm from "./components/UserForm";
 import PrivateRoute from "./utils/PrivateRoute";
@@ -10,29 +10,22 @@ import PlantPage from "../src/components/PlantPage";
 import SignupForm from "./components/SignUpForm";
 import styled from "styled-components";
 import img from "./img/greenleave.jpg";
-import UserCard from "./components/UserCard"
 
 function App() {
-  const [user, setUser] = useState([]);
+  const [auth, setAuth] = useState([]);
 
-
-  
   return (
     <AppWrapper>
       <Header />
-
-      <UserContext.Provider value={{user, setUser}}>
+      <AuthContext.Provider value={{ auth, setAuth }}>
         {/* Below Route is for the default URL */}
-        <Route exact path="/" component={Login} />    
+        <Route exact path="/" component={Login} />
         <Route exact path="/login" component={Login} />
-        <PrivateRoute exact path="/userInfo" component={UserForm} />
         <Route path="/signup" component={SignupForm} />
-        <PrivateRoute path="/userCard" component={UserCard} />
-      </UserContext.Provider>
-      {/* will change Route to PrivateRoute when login authentication is modified */}
-      <PrivateRoute path="/addPlants" component={AddPlantsForm} />
-      <PrivateRoute path="/myplant" component={PlantPage} />
-
+        <PrivateRoute exact path="/userInfo" component={UserForm} />
+        <PrivateRoute path="/addPlants" component={AddPlantsForm} />
+        <PrivateRoute path="/myplant" component={PlantPage} />
+      </AuthContext.Provider>
     </AppWrapper>
   );
 }

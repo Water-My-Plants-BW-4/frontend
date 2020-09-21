@@ -45,7 +45,7 @@ const NavContainer = styled.div`
 }
 `;
 
-const Header = (props) => {
+const Header = () => {
   const {go} = useHistory();
   return (
     <NavContainer>

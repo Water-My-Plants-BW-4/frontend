@@ -2,8 +2,7 @@ import React, { useState, useContext } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { UserContext } from "../context/UserContext"
-
+import { UserContext } from "../context/UserContext";
 
 const UserWrapper = styled.div`
   display: flex;
@@ -26,13 +25,13 @@ const UserWrapper = styled.div`
   }
 
   .info {
-      text-align:center;
-      padding-top: -70px;
+    text-align: center;
+    padding-top: -70px;
   }
 
-  .update-form{
-      padding: 150px 0 0 0;
-      text-align: center;
+  .update-form {
+    padding: 150px 0 0 0;
+    text-align: center;
   }
 
   #main-title {
@@ -92,12 +91,10 @@ const initialUser = {
   phoneNumber: "",
 };
 
-
-const UserCard = ({  fetchUser }) => {
-
+const UserCard = () => {
   const [editing, setEditing] = useState(false);
   const [userToEdit, setUserToEdit] = useState(initialUser);
-  const { user } = useContext(UserContext);
+  const { user, fetchUser } = useContext(UserContext);
 
   let history = useHistory();
 
@@ -107,20 +104,18 @@ const UserCard = ({  fetchUser }) => {
     fetchUser();
   };
 
-
   const updateUser = (e) => {
-      e.preventDefault()
-      setEditing(false);
+    e.preventDefault();
+    setEditing(false);
     console.log("user id is:", userToEdit.id);
-    
+
     axiosWithAuth()
-      .put(`/users/${userToEdit.id}`, userToEdit ) 
+      .put(`/users/${userToEdit.id}`, userToEdit)
       .then((res) => {
         console.log("This is the updateUser Response", res);
         // setUser(res.data);
         fetchUser();
-        history.push("/userInfo")
-
+        history.push("/userInfo");
       })
       .catch((err) => {
         console.log("This is the updateUser Error", err.message);
@@ -134,21 +129,20 @@ const UserCard = ({  fetchUser }) => {
         console.log("This is the deleteUser Response", res);
         // setUser(res.data);
         fetchUser();
-        history.push("/userInfo")
+        history.push("/userInfo");
       })
       .catch((err) => {
         console.log("This is the deleteUser Error", err.message);
       });
   };
 
-
   console.log("User info: ", user);
 
   return (
     <UserWrapper>
-        {editing && (
-        <form onSubmit={updateUser} className='update-form'>
-            <h1>Update User Profile</h1>
+      {editing && (
+        <form onSubmit={updateUser} className="update-form">
+          <h1>Update User Profile</h1>
           <label>
             Username:
             <input
@@ -157,7 +151,7 @@ const UserCard = ({  fetchUser }) => {
               onChange={(e) =>
                 setUserToEdit({
                   ...userToEdit,
-                  username: e.target.value
+                  username: e.target.value,
                 })
               }
               placeholder="Username"
@@ -172,7 +166,7 @@ const UserCard = ({  fetchUser }) => {
               onChange={(e) =>
                 setUserToEdit({
                   ...userToEdit,
-                  password: e.target.value
+                  password: e.target.value,
                 })
               }
               placeholder="password"
@@ -187,7 +181,7 @@ const UserCard = ({  fetchUser }) => {
               onChange={(e) =>
                 setUserToEdit({
                   ...userToEdit,
-                  phoneNumber: e.target.value
+                  phoneNumber: e.target.value,
                 })
               }
               placeholder="phoneNumber"
@@ -209,33 +203,29 @@ const UserCard = ({  fetchUser }) => {
       )}
       <h1 id="main-title">User Profile</h1>
       <>
-      
         <div className="info">
           {console.log("users", [user])}
-        {[...user] && [...user].reverse().map((u) => (
-          <div key={u.id}>
-          <span>
-            <p>Username: {u.username}</p>
-            <p>Password: {u.password}</p>
-            <p>Phone Number: {u.phoneNumber}</p>
-          </span>
-          <button
-          onClick={() => editUser(u)} >
-            Update
-          </button>
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              deleteUser(u);
-            }}
-          >
-            Delete
-          </button>
-          </div>
-        ))}
+          {[...user] &&
+            [...user].reverse().map((u) => (
+              <div key={u.id}>
+                <span>
+                  <p>Username: {u.username}</p>
+                  <p>Password: {u.password}</p>
+                  <p>Phone Number: {u.phoneNumber}</p>
+                </span>
+                <button onClick={() => editUser(u)}>Update</button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    deleteUser(u);
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
+            ))}
         </div>
       </>
-      
 
       {/* <div className="spacer" /> */}
     </UserWrapper>
