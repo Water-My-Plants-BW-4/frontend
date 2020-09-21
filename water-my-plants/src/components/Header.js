@@ -65,6 +65,7 @@ const Header = (props) => {
         >
           <span>About Us</span>
         </a>
+        
         <NavLink to="/myplant">Home</NavLink>
       </div>
     </NavContainer>
