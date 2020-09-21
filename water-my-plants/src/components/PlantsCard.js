@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {useHistory} from "react-router-dom";
 import axiosWithAuth from "../utils/axiosWithAuth";
 // import { PlantContext } from '../context/UserContext';
 import styled from "styled-components";
@@ -15,7 +16,7 @@ const PlantsCardWrapper = styled.div`
   font-size: 30px;
   box-sizing: border-box;
   margin-top: 200px;
-
+  border: 3px solid red;
   h1 {
     text-align: center;
     margin: 150px 0 10px 0;
@@ -85,6 +86,7 @@ const initialValue = {
 
 const PlantsCard = ({ plants, fetchPlants, user }) => {
   const [newPlant, setNewPlant] = useState(initialValue);
+  const {push} = useHistory();
 
   const handleChanger = (e) => {
     setNewPlant({ ...newPlant,
@@ -95,11 +97,11 @@ const PlantsCard = ({ plants, fetchPlants, user }) => {
     console.log("your plants:", plants);
     e.preventDefault();
     axiosWithAuth()
-      .post("/plants", newPlant) //I will add here the info from backend
+      .post("plants", newPlant) //I will add here the info from backend
       .then((res) => {
         console.log("The response for newPlants is:", res);
         setNewPlant(res.data);
-        fetchPlants();
+       push("/myplant")
       })
       .catch((err) => console.log("NewPlants data error is:", err.message));
     setNewPlant({
@@ -148,20 +150,6 @@ const PlantsCard = ({ plants, fetchPlants, user }) => {
 
         <button>Add A New Plant Reminder</button>
       </form>
-      <h3>Your New Plants Reminder are:</h3>{" "}
-      {/* inside here after welcome goes {user.name} */}
-      <>
-        {plants.map((plant) => (
-          <li key={plant.id}>
-            <span>
-              <p>Name: {plant.nickname}</p>
-              <p>Species: {plant.species}</p>
-              <p>Frequency Value: {plant.frequency_value}</p>
-              <p>Frequency Range: {plant.frequency_range}</p>
-            </span>
-          </li>
-        ))}
-      </>
     </PlantsCardWrapper>
   );
 };

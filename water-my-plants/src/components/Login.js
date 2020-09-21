@@ -41,7 +41,7 @@ const Login = () => {
       .post("/login", formState)
       .then((res) => {
         const data = res.data;
-        // console.log("form submitted success", data);
+        console.log("form submitted success", data);
         localStorage.setItem("token", data.token);
         // localStorage.setItem('userId', data.id);
         //I set setUser here so it can retrieve the user data to the DOM

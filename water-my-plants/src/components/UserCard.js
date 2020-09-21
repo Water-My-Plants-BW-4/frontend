@@ -92,12 +92,10 @@ const initialUser = {
   phoneNumber: "",
 };
 
-
-const UserCard = ({  fetchUser }) => {
-
+const UserCard = ({ fetchUser }) => {
+  const {user} = useContext(UserContext)
   const [editing, setEditing] = useState(false);
   const [userToEdit, setUserToEdit] = useState(initialUser);
-  const { user } = useContext(UserContext);
 
   let history = useHistory();
 
