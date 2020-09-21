@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import PlantsListCard from "./PlantsListCard";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { PlantsContext } from "../context/PlantsContext"
 
 const PlantlistContainer = styled.div`
@@ -19,7 +18,7 @@ const PlantlistContainer = styled.div`
 
 
 const PlantList = () => {
-  const {plantList, setPlantList} = useContext(PlantsContext)
+  const {plantList} = useContext(PlantsContext)
 
   return (
     <PlantlistContainer>
