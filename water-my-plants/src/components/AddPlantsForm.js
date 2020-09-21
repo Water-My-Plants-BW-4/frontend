@@ -7,7 +7,7 @@ import PlantsCard from "./PlantsCard";
 const AddPlantsForm = () => {
     //aftert the useContext Plants is implemented, we dont need this anymore
     const {plantList, setPlantList} = useContext(PlantsContext)
-    //   const [plants, setPlants] = useState([])
+      const [plants, setPlants] = useState([])
     const fetchPlants = () => {
         axiosWithAuth()
         .get("/plants") //I will add here the info from backend
@@ -20,9 +20,9 @@ const AddPlantsForm = () => {
         })
     };
 
-    useEffect(() => {
-        fetchPlants();
-    }, []);
+    // useEffect(() => {
+    //     fetchPlants();
+    // }, []);
 
     return (
         <>

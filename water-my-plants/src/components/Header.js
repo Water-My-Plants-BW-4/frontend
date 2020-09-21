@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import styled from "styled-components";
-
+import { UserContext } from "../context/UserContext";
 const NavContainer = styled.div`
     height: 70px;
     display: flex;
@@ -46,7 +46,9 @@ const NavContainer = styled.div`
 `;
 
 const Header = (props) => {
+  const { user } = useContext(UserContext);
   const {go} = useHistory();
+
   return (
     <NavContainer>
       <h1>Water My Plants</h1>
@@ -55,7 +57,7 @@ const Header = (props) => {
           Login
         </NavLink> : <Link className="logout" to="/" onClick={() => { 
           localStorage.clear()
-          
+         
           go(0)
           }}>Logout</Link>}
         <NavLink className="link" activeClassName="active" to="/signup">
@@ -69,6 +71,7 @@ const Header = (props) => {
         
         <NavLink to="/myplant">Home</NavLink>
       </div>
+      <h1>{user.message}</h1>
     </NavContainer>
   );
 };

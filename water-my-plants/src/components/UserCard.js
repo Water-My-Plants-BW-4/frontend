@@ -91,12 +91,12 @@ const initialUser = {
   password: "",
   phoneNumber: "",
 };
-// user,
+
 const UserCard = ({ fetchUser }) => {
   const {user} = useContext(UserContext)
   const [editing, setEditing] = useState(false);
   const [userToEdit, setUserToEdit] = useState(initialUser);
-//   const { user, setUser } = useContext(UserContext);
+    //   const { user, setUser } = useContext(UserContext);
 
   let history = useHistory();
 
@@ -106,11 +106,6 @@ const UserCard = ({ fetchUser }) => {
     fetchUser();
   };
 
-  //   const reset = () => {
-  //     setUsers(initialUser);
-  //     setEditing(false);
-  //     fetchUser();
-  //   };
 
   const updateUser = (e) => {
       e.preventDefault()
