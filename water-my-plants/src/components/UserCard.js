@@ -86,13 +86,14 @@ const UserWrapper = styled.div`
 `;
 
 const initialUser = {
-    id: "",
+  id: "",
   username: "",
   password: "",
   phoneNumber: "",
 };
-
-const UserCard = ({user,  fetchUser }) => {
+// user,
+const UserCard = ({ fetchUser }) => {
+  const {user} = useContext(UserContext)
   const [editing, setEditing] = useState(false);
   const [userToEdit, setUserToEdit] = useState(initialUser);
 //   const { user, setUser } = useContext(UserContext);
@@ -213,7 +214,8 @@ const UserCard = ({user,  fetchUser }) => {
       <>
       
         <div className="info">
-        {[...user].reverse().map((u) => (
+          {console.log("users", [user])}
+        {[...user] && [...user].reverse().map((u) => (
           <div key={u.id}>
           <span>
             <p>Username: {u.username}</p>

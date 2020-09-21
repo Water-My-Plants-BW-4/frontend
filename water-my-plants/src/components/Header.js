@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 const NavContainer = styled.div`
@@ -39,17 +39,25 @@ const NavContainer = styled.div`
           background: lightgray;
       }
    }
+   .logout {
+     color: red;
+   }
 }
 `;
 
 const Header = (props) => {
+  const {go} = useHistory();
   return (
     <NavContainer>
       <h1>Water My Plants</h1>
       <div className="nav">
-        <NavLink className="link" activeClassName="active" to="/login">
+       {!localStorage.getItem('token') ? <NavLink className="link" activeClassName="active" to="/login">
           Login
-        </NavLink>
+        </NavLink> : <Link className="logout" to="/" onClick={() => { 
+          localStorage.clear()
+          
+          go(0)
+          }}>Logout</Link>}
         <NavLink className="link" activeClassName="active" to="/signup">
           SignUp
         </NavLink>
@@ -58,7 +66,8 @@ const Header = (props) => {
         >
           <span>About Us</span>
         </a>
-        <NavLink to="/myPlant">Home</NavLink>
+        
+        <NavLink to="/myplant">Home</NavLink>
       </div>
     </NavContainer>
   );

@@ -21,6 +21,8 @@ function App() {
       <Header />
 
       <UserContext.Provider value={{user, setUser}}>
+        {/* Below Route is for the default URL */}
+        <Route exact path="/" component={Login} />    
         <Route exact path="/login" component={Login} />
         <PrivateRoute exact path="/userInfo" component={UserForm} />
         <Route path="/signup" component={SignupForm} />
