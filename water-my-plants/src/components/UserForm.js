@@ -8,6 +8,7 @@ import { UserContext } from "../context/UserContext";
 
 const UserForm = () => {
  const { user, setUser } = useContext(UserContext);
+//  const [user, setUser] = useState([])
 
 
   const fetchUser = () => {

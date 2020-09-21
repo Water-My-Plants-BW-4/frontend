@@ -3,7 +3,6 @@ import PlantsListCard from "./PlantsListCard";
 import styled from "styled-components";
 import { PlantsContext } from "../context/PlantsContext"
 
-
 const PlantlistContainer = styled.div`
 display: flex;
 justify-content: center;

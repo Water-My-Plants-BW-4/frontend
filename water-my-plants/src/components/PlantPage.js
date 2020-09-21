@@ -41,7 +41,6 @@ h1 {
 const PlantPage = () => {
   const [loading, setLoading] = useState(false);
   const [plantList, setPlantList] = useState([]);
-
   useEffect(() => {
     axiosWithAuth()
        .get("/plants")
