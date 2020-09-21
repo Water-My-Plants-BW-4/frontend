@@ -41,8 +41,6 @@ h1 {
 const PlantPage = () => {
   const [loading, setLoading] = useState(false);
   const [plantList, setPlantList] = useState([]);
-  
-  //------FRONT-END I will work here--------
   useEffect(() => {
     axiosWithAuth()
        .get("/plants")
@@ -54,7 +52,6 @@ const PlantPage = () => {
          console.error("the Erros is:", err);
        });
    }, []);
- 
 
   return (
     <PlantsListWrapper>
@@ -75,11 +72,12 @@ const PlantPage = () => {
      <PlantCard ></PlantCard>
       */}
       <PlantsContext.Provider value={{plantList, setPlantList}}>
-        <AddPlantsForm />
+        {/* <AddPlantsForm />  */}
         <PlantList />
-      </PlantsContext.Provider>
+       </PlantsContext.Provider>
+      
     </PlantsListWrapper>
-
+  
   );
 };
 

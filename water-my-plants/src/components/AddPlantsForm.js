@@ -20,9 +20,9 @@ const AddPlantsForm = () => {
         })
     };
 
-    useEffect(() => {
-        fetchPlants();
-    }, []);
+    // useEffect(() => {
+    //     fetchPlants();
+    // }, []);
 
     return (
         <>

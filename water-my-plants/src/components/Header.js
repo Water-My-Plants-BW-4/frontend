@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import styled from "styled-components";
-
+import { AuthContext } from "../context/UserContext";
 const NavContainer = styled.div`
     height: 70px;
     display: flex;
@@ -45,8 +45,12 @@ const NavContainer = styled.div`
 }
 `;
 
-const Header = () => {
+
+const Header = (props) => {
+  const { auth } = useContext(AuthContext);
+
   const {go} = useHistory();
+
   return (
     <NavContainer>
       <h1>Water My Plants</h1>
@@ -55,7 +59,7 @@ const Header = () => {
           Login
         </NavLink> : <Link className="logout" to="/" onClick={() => { 
           localStorage.clear()
-          
+         
           go(0)
           }}>Logout</Link>}
         <NavLink className="link" activeClassName="active" to="/signup">
@@ -69,6 +73,7 @@ const Header = () => {
         
         <NavLink to="/myplant">Home</NavLink>
       </div>
+      <h1>{user.message}</h1>
     </NavContainer>
   );
 };

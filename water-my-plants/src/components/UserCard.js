@@ -96,6 +96,7 @@ const UserCard = () => {
   const [userToEdit, setUserToEdit] = useState(initialUser);
   const { user, fetchUser } = useContext(UserContext);
 
+
   let history = useHistory();
 
   const editUser = (edit) => {
