@@ -19,7 +19,7 @@ const PlantlistContainer = styled.div`
 
 
 const PlantList = () => {
-  const {plantList, setPlantList} = useContext(PlantsContext)
+  const {plantList} = useContext(PlantsContext)
 
   return (
     <PlantlistContainer>

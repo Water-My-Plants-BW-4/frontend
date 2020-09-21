@@ -24,7 +24,7 @@ const UserForm = () => {
 
   useEffect(() => {
     fetchUser();
-  }, []);
+  }, [user]);
 
   return (
     <>
