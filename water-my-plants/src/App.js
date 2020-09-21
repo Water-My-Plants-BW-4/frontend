@@ -10,6 +10,7 @@ import PlantPage from "../src/components/PlantPage";
 import SignupForm from "./components/SignUpForm";
 import styled from "styled-components";
 import img from "./img/greenleave.jpg";
+import UserCard from "./components/UserCard"
 
 function App() {
   const [user, setUser] = useState([]);
@@ -26,6 +27,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         <PrivateRoute exact path="/userInfo" component={UserForm} />
         <Route path="/signup" component={SignupForm} />
+        <PrivateRoute path="/userCard" component={UserCard} />
       </UserContext.Provider>
       {/* will change Route to PrivateRoute when login authentication is modified */}
       <PrivateRoute path="/addPlants" component={AddPlantsForm} />

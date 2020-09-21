@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
-import { UserContext } from "../context/UserContext";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { UserContext } from "../context/UserContext"
 
 
 const UserWrapper = styled.div`
@@ -91,12 +91,13 @@ const initialUser = {
   password: "",
   phoneNumber: "",
 };
-// user,
-const UserCard = ({ fetchUser }) => {
-  const {user} = useContext(UserContext)
+
+
+const UserCard = ({  fetchUser }) => {
+
   const [editing, setEditing] = useState(false);
   const [userToEdit, setUserToEdit] = useState(initialUser);
-//   const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   let history = useHistory();
 
@@ -106,14 +107,10 @@ const UserCard = ({ fetchUser }) => {
     fetchUser();
   };
 
-  //   const reset = () => {
-  //     setUsers(initialUser);
-  //     setEditing(false);
-  //     fetchUser();
-  //   };
 
   const updateUser = (e) => {
       e.preventDefault()
+      setEditing(false);
     console.log("user id is:", userToEdit.id);
     
     axiosWithAuth()
@@ -121,7 +118,7 @@ const UserCard = ({ fetchUser }) => {
       .then((res) => {
         console.log("This is the updateUser Response", res);
         // setUser(res.data);
-        fetchUser(res.data);
+        fetchUser();
         history.push("/userInfo")
 
       })
@@ -206,7 +203,7 @@ const UserCard = ({ fetchUser }) => {
             >
               Save
             </button>
-            <button onClick={() => setEditing(false)}>Done / Cancel</button>
+            <button onClick={() => setEditing(false)}>Cancel</button>
           </div>
         </form>
       )}
