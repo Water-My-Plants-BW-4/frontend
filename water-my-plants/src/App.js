@@ -14,14 +14,16 @@ import UserCard from "./components/UserCard"
 
 function App() {
   const [user, setUser] = useState([]);
-  //Bhawnish will use this for his context API
-  const [plants, setPlants] = useState([]);
 
+
+  
   return (
     <AppWrapper>
       <Header />
 
       <UserContext.Provider value={{user, setUser}}>
+        {/* Below Route is for the default URL */}
+        <Route exact path="/" component={Login} />    
         <Route exact path="/login" component={Login} />
         <PrivateRoute exact path="/userInfo" component={UserForm} />
         <Route path="/signup" component={SignupForm} />
@@ -30,6 +32,7 @@ function App() {
       {/* will change Route to PrivateRoute when login authentication is modified */}
       <PrivateRoute path="/addPlants" component={AddPlantsForm} />
       <PrivateRoute path="/myplant" component={PlantPage} />
+
     </AppWrapper>
   );
 }

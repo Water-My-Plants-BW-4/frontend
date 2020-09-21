@@ -50,6 +50,7 @@ const Login = () => {
       })
       .catch((err) => {
         console.log("This is the Error", err);
+        alert("Please signin or signup first")
       });
   };
   
@@ -121,8 +122,10 @@ const Login = () => {
             <p className="error">{errors.password}</p>
           )}
         </label>
-        <button>SUBMIT</button>
-        <button onClick={() => localStorage.removeItem('token')} id="log">Log Out</button>
+        <button type="submit" onClick={(e) => e.stopPropagation()}>SUBMIT</button>
+        {/* Logout will only display if the user is logged in */}
+
+
         <div className="new-account">
           <p>Not registered yet?</p>
           <Link to="/signup">Register Here</Link>

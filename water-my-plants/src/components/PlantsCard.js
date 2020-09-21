@@ -3,6 +3,7 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 // import { PlantContext } from '../context/UserContext';
 import styled from "styled-components";
 
+
 const PlantsCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -75,6 +76,7 @@ const PlantsCardWrapper = styled.div`
 `;
 
 const initialValue = {
+  id: Date.now(),
   nickname: "",
   species: "",
   frequency_value: "",
@@ -82,26 +84,25 @@ const initialValue = {
 };
 
 const PlantsCard = ({ plants, fetchPlants, user }) => {
-  const [newPlants, setNewPlants] = useState(initialValue);
-
-  // const { plants } = useContext(UserContext);
+  const [newPlant, setNewPlant] = useState(initialValue);
 
   const handleChanger = (e) => {
-    setNewPlants({ ...newPlants, [e.target.name]: e.target.value });
+    setNewPlant({ ...newPlant,
+       [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     console.log("your plants:", plants);
     e.preventDefault();
     axiosWithAuth()
-      .post(newPlants) //I will add here the info from backend
+      .post("/plants", newPlant) //I will add here the info from backend
       .then((res) => {
         console.log("The response for newPlants is:", res);
-        setNewPlants(res.data);
+        setNewPlant(res.data);
         fetchPlants();
       })
       .catch((err) => console.log("NewPlants data error is:", err.message));
-    setNewPlants({
+    setNewPlant({
       nickname: "",
       species: "",
       frequency_value: "",
@@ -118,7 +119,7 @@ const PlantsCard = ({ plants, fetchPlants, user }) => {
           name="nickname"
           onChange={handleChanger}
           placeholder="Plants Name"
-          value={newPlants.nickname}
+          value={newPlant.nickname}
         />
 
         <input
@@ -126,7 +127,7 @@ const PlantsCard = ({ plants, fetchPlants, user }) => {
           name="species"
           onChange={handleChanger}
           placeholder="Species Name"
-          value={newPlants.species}
+          value={newPlant.species}
         />
 
         <input
@@ -134,7 +135,7 @@ const PlantsCard = ({ plants, fetchPlants, user }) => {
           name="frequency_value"
           onChange={handleChanger}
           placeholder="Frequency Value"
-          value={newPlants.frequency_value}
+          value={newPlant.frequency_value}
         />
 
         <input
@@ -142,7 +143,7 @@ const PlantsCard = ({ plants, fetchPlants, user }) => {
           name="frequency_range"
           onChange={handleChanger}
           placeholder="Frequency Range "
-          value={newPlants.frequency_range}
+          value={newPlant.frequency_range}
         />
 
         <button>Add A New Plant Reminder</button>

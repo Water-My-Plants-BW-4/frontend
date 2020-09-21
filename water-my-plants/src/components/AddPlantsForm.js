@@ -1,20 +1,19 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axiosWithAuth from "../utils/axiosWithAuth";
-// import { PlantsContext } from '../context/UserContext';
+import { PlantsContext } from '../context/PlantsContext';
 import PlantsCard from "./PlantsCard";
 
 
 const AddPlantsForm = () => {
     //aftert the useContext Plants is implemented, we dont need this anymore
-    const [plants, setPlants] = useState([]);
-     //const { plants } = useContext(PlantsContext);
-
+    const {plantList, setPlantList} = useContext(PlantsContext)
+    //   const [plants, setPlants] = useState([])
     const fetchPlants = () => {
         axiosWithAuth()
-        .get() //I will add here the info from backend
+        .get("/plants") //I will add here the info from backend
         .then(res => {
             console.log("This is the fetchPlants response", res);
-            setPlants();
+             setPlantList(res.data);
         })
         .catch(err => {
             console.log("This is the fetchPlants error", err.message);
@@ -28,7 +27,7 @@ const AddPlantsForm = () => {
     return (
         <>
         <div>
-            <PlantsCard plants={plants} fetchPlants={fetchPlants} />
+            <PlantsCard plants={plantList} fetchPlants={fetchPlants} />
         </div>
         </>
     )
