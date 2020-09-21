@@ -5,6 +5,7 @@ import styled from "styled-components";
 import PlantList from "./PlantList";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { PlantsContext } from "../context/PlantsContext";
+import AddPlantsForm from "./AddPlantsForm";
 
 
 const PlantsListWrapper = styled.div`
@@ -44,7 +45,7 @@ const PlantPage = () => {
   //------FRONT-END I will work here--------
   useEffect(() => {
     axiosWithAuth()
-       .get("https://water-my-plants-ii.herokuapp.com/plants")
+       .get("/plants")
        .then((res) => {
          console.log("this is the response:", res);
          setPlantList(res.data);
@@ -58,12 +59,12 @@ const PlantPage = () => {
   return (
     <PlantsListWrapper>
       <div className="main-buttons">
-        <Link to="/addPlants">
+        <Link to="/addplants">
           <div>
             <button>Add Plant Reminders</button>
           </div>
         </Link>
-        <Link to="/userInfo">
+        <Link to="/userinfo">
           <div>
             <button>User Profile</button>
           </div>
@@ -74,7 +75,8 @@ const PlantPage = () => {
      <PlantCard ></PlantCard>
       */}
       <PlantsContext.Provider value={{plantList, setPlantList}}>
-      <PlantList />
+        <AddPlantsForm />
+        <PlantList />
       </PlantsContext.Provider>
     </PlantsListWrapper>
 
