@@ -8,7 +8,7 @@ const UserForm = () => {
 
   const fetchUser = () => {
     axiosWithAuth()
-      .get("/users/")
+      .get("/users")
       .then((res) => {
         console.log("This is the fetchUser response", res.data);
         setUser(res.data);
@@ -24,6 +24,7 @@ const UserForm = () => {
 
   return (
     <>
+    <h1>Update</h1>
       <div>
         <UserContext.Provider value={{ user, fetchUser }}>
           <UserCard />
