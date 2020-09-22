@@ -17,9 +17,7 @@ function App() {
   const [auth, setAuth] = useState([]);
   const [plantList, setPlantList] = useState([]);
 
-  return (
-    <AppWrapper>
-      <Header />
+  
       
 
   
