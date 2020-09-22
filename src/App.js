@@ -48,8 +48,6 @@ function App() {
         <Route path="/signup" component={SignupForm} />
 
         <PrivateRoute exact path="/userInfo" component={UserForm} />
-        <PrivateRoute path="/addPlants" component={AddPlantsForm} />
-        <PrivateRoute path="/myplant" component={PlantPage} />
       {/* will change Route to PrivateRoute when login authentication is modified */}
       <PlantsContext.Provider value={{plantList, setPlantList}}>
       <PrivateRoute path="/addPlants" component={AddPlantsForm} />

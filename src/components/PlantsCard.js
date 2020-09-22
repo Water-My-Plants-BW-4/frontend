@@ -97,7 +97,7 @@ const PlantsCard = ({ plants, fetchPlants, user }) => {
     console.log("your plants:", plants);
     e.preventDefault();
     axiosWithAuth()
-      .post("plants", newPlant) //I will add here the info from backend
+      .post("/plants", newPlant) //I will add here the info from backend
       .then((res) => {
         console.log("The response for newPlants is:", res);
         setNewPlant(res.data);

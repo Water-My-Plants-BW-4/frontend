@@ -19,7 +19,7 @@ justify-content: center;
 `;
 
 
-const PlantList = (props) => {
+const PlantList = () => {
   const {plantList} = useContext(PlantsContext)
 
   return (
