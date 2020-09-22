@@ -3,10 +3,10 @@ import styled from "styled-components";
 import * as Yup from "yup";
 import { useHistory, Link } from "react-router-dom";
 import axiosWithAuth from "../utils/axiosWithAuth";
-import { UserContext } from "../context/UserContext";
+import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
-  const { user, setUser } = useContext(UserContext);
+  const {  setAuth } = useContext(AuthContext);
   const defaultState = {
     username: "",
     password: "",
@@ -43,9 +43,8 @@ const Login = () => {
         const data = res.data;
         console.log("form submitted success", data);
         localStorage.setItem("token", data.token);
-        // localStorage.setItem('userId', data.id);
-        //I set setUser here so it can retrieve the user data to the DOM
-        setUser(data);
+        //I set setAuth here so it can retrieve the user data to the DOM
+        setAuth(data);
         push("/myplant");
       })
       .catch((err) => {

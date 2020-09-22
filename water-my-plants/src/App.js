@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
 import Login from "./components/Login";
 import Header from "../src/components/Header";
-import { UserContext } from "./context/UserContext";
+import { AuthContext } from "./context/AuthContext";
 import { PlantsContext } from "./context/PlantsContext";
 import AddPlantsForm from "./components/AddPlantsForm";
 import UserForm from "./components/UserForm";
@@ -14,10 +14,16 @@ import img from "./img/greenleave.jpg";
 import  axiosWithAuth  from "./utils/axiosWithAuth";
 
 function App() {
-  const [user, setUser] = useState([]);
+  const [auth, setAuth] = useState([]);
   const [plantList, setPlantList] = useState([]);
 
-  useEffect(() => {
+  return (
+    <AppWrapper>
+      <Header />
+      
+
+  
+ useEffect(() => {
     axiosWithAuth()
        .get("/plants")
        .then((res) => {
@@ -35,21 +41,23 @@ function App() {
     <AppWrapper>
       
      
-      <UserContext.Provider value={{user, setUser}}>
+     <AuthContext.Provider value={{ auth, setAuth }}>
       <Header />
-     
+    
         {/* Below Route is for the default URL */}
-        <Route exact path="/" component={Login} />    
+        <Route exact path="/" component={Login} />
         <Route exact path="/login" component={Login} />
-        <PrivateRoute exact path="/userInfo" component={UserForm} />
         <Route path="/signup" component={SignupForm} />
-      
+
+        <PrivateRoute exact path="/userInfo" component={UserForm} />
+        <PrivateRoute path="/addPlants" component={AddPlantsForm} />
+        <PrivateRoute path="/myplant" component={PlantPage} />
       {/* will change Route to PrivateRoute when login authentication is modified */}
       <PlantsContext.Provider value={{plantList, setPlantList}}>
       <PrivateRoute path="/addPlants" component={AddPlantsForm} />
       <PrivateRoute path="/myplant" component={PlantPage} />
       </PlantsContext.Provider>
-      </UserContext.Provider>
+     </AuthContext.Provider>
       
    
 
