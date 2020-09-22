@@ -6,7 +6,7 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 import { UserContext } from "../context/UserContext";
 
 const Login = () => {
-  const { user, setUser } = useContext(UserContext);
+  const {  setUser } = useContext(UserContext);
   const defaultState = {
     username: "",
     password: "",

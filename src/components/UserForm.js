@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import UserCard from "../components/UserCard";
 import { UserContext } from "../context/UserContext";
@@ -23,9 +23,9 @@ const UserForm = () => {
       });
   };
 
-  useEffect(() => {
-    fetchUser();
-  }, []);
+  // useEffect(() => {
+  //   fetchUser();
+  // }, []);
 
   return (
     <>
