@@ -24,7 +24,6 @@ const UserForm = () => {
 
   return (
     <>
-    <h1>Update</h1>
       <div>
         <UserContext.Provider value={{ user, fetchUser }}>
           <UserCard />
