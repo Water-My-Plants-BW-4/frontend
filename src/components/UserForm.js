@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import UserCard from "../components/UserCard";
 import { UserContext } from "../context/UserContext";
-
+import { useHistory } from "react-router-dom";
 
 
 
@@ -23,9 +23,9 @@ const UserForm = () => {
       });
   };
 
-  // useEffect(() => {
-  //   fetchUser();
-  // }, []);
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
   return (
     <>
