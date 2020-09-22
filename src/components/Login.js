@@ -6,11 +6,7 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
-<<<<<<< HEAD:src/components/Login.js
-  const {  setUser } = useContext(UserContext);
-=======
   const {  setAuth } = useContext(AuthContext);
->>>>>>> b6973f93483284af0d3c3221d10ab82e76ec143f:water-my-plants/src/components/Login.js
   const defaultState = {
     username: "",
     password: "",
@@ -104,6 +100,7 @@ const Login = () => {
             onChange={handleChange}
             value={formState.username}
             label="Username"
+            required
             errors={errors}
           />
           {errors.username.length !== 0 && (
@@ -119,6 +116,7 @@ const Login = () => {
             placeholder="Password"
             value={formState.password}
             label="Password"
+            required
             errors={errors}
           />
           {errors.password.length !== 0 && (
