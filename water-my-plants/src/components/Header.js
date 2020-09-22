@@ -5,7 +5,7 @@ import { AuthContext } from "../context/AuthContext";
 const NavContainer = styled.div`
     height: 70px;
     display: flex;
-    padding-left: 220px;
+    padding-left: 219px;
     align-items: center;
     margin: 10px 10px 0 10px;
     background-color: lightgray;
