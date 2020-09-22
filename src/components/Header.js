@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { UserContext } from "../context/UserContext";
+import { AuthContext } from "../context/AuthContext";
 const NavContainer = styled.div`
     height: 70px;
     display: flex;
@@ -45,8 +45,10 @@ const NavContainer = styled.div`
 }
 `;
 
+
 const Header = (props) => {
-  const { user } = useContext(UserContext);
+  const { auth } = useContext(AuthContext);
+
   const {go} = useHistory();
 
   return (
@@ -71,7 +73,7 @@ const Header = (props) => {
         
         <NavLink to="/myplant">Home</NavLink>
       </div>
-      <h1>{user.message}</h1>
+      <h1>{auth.message}</h1>
     </NavContainer>
   );
 };

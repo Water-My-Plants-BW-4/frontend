@@ -82,29 +82,24 @@ const SignUpContainer = styled.div`
   }
 `;
 
-
-
 const defaultFormState = {
   username: "",
   email: "",
   password: "",
   comfirmpassword: "",
-  phoneNumber: ""
+  phoneNumber: "",
 };
-
-
 
 let reg = {
   username: "",
   password: "",
-  phoneNumber: ""
+  phoneNumber: "",
 };
 
-const SignUpForm = (props) => {
+const SignUpForm = () => {
   const [formState, setFormState] = useState(defaultFormState);
 
   const history = useHistory();
-
 
   // redo the handle
   const handleChange = (e) => {
@@ -113,14 +108,13 @@ const SignUpForm = (props) => {
       ...formState,
       [e.target.name]: e.target.value,
     });
-    
   };
   const handleSumbmit = (e) => {
     e.preventDefault();
     reg = {
       username: formState.username,
       password: formState.password,
-      phoneNumber: formState.phoneNumber
+      phoneNumber: formState.phoneNumber,
     };
     console.log(reg, formState);
     axiosWithAuth()
@@ -143,7 +137,6 @@ const SignUpForm = (props) => {
             onChange={handleChange}
             placeholder="Username"
             value={formState.uernamename}
-           
           />
         </label>
         <label>
@@ -172,8 +165,8 @@ const SignUpForm = (props) => {
             placeholder="Confirm Password"
             value={formState.comfirmpassword}
           />
-          </label>
-          <label>
+        </label>
+        <label>
           <input
             type="phoneNumber"
             name="phoneNumber"

@@ -3,10 +3,14 @@ import styled from "styled-components";
 import * as Yup from "yup";
 import { useHistory, Link } from "react-router-dom";
 import axiosWithAuth from "../utils/axiosWithAuth";
-import { UserContext } from "../context/UserContext";
+import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
+<<<<<<< HEAD:src/components/Login.js
   const {  setUser } = useContext(UserContext);
+=======
+  const {  setAuth } = useContext(AuthContext);
+>>>>>>> b6973f93483284af0d3c3221d10ab82e76ec143f:water-my-plants/src/components/Login.js
   const defaultState = {
     username: "",
     password: "",
@@ -43,9 +47,8 @@ const Login = () => {
         const data = res.data;
         console.log("form submitted success", data);
         localStorage.setItem("token", data.token);
-        // localStorage.setItem('userId', data.id);
-        //I set setUser here so it can retrieve the user data to the DOM
-        setUser(data);
+        //I set setAuth here so it can retrieve the user data to the DOM
+        setAuth(data);
         push("/myplant");
       })
       .catch((err) => {
