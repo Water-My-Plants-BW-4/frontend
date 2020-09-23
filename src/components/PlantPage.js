@@ -72,16 +72,11 @@ const PlantPage = () => {
      <PlantCard ></PlantCard>
       */}
       <PlantsContext.Provider value={{plantList, setPlantList}}>
-<<<<<<< HEAD:src/components/PlantPage.js
-        {/* <AddPlantsForm />  */}
-        <PlantList />
-       </PlantsContext.Provider>
-      
-=======
+
         <AddPlantsForm />
         <PlantList />
       </PlantsContext.Provider>
->>>>>>> dev:water-my-plants/src/components/PlantPage.js
+
     </PlantsListWrapper>
   
   );
