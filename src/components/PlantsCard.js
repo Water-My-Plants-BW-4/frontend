@@ -74,6 +74,7 @@ const PlantsCardWrapper = styled.div`
 `;
 
 const initialValue = {
+  id: Date.now(),
   nickname: "",
   species: "",
   frequency_value: "",
