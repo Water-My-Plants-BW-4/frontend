@@ -4,8 +4,13 @@ import UserCard from "../components/UserCard";
 import { UserContext } from "../context/UserContext";
 
 const UserForm = () => {
+<<<<<<< HEAD:src/components/UserForm.js
   const [user, setUser] = useState([]);
 
+=======
+ const { user, setUser } = useContext(UserContext);
+ 
+>>>>>>> dev:water-my-plants/src/components/UserForm.js
   const fetchUser = () => {
     axiosWithAuth()
       .get("/users")
@@ -21,8 +26,12 @@ const UserForm = () => {
 
   useEffect(() => {
     fetchUser();
+<<<<<<< HEAD:src/components/UserForm.js
     
   }, []);
+=======
+  }, [user]);
+>>>>>>> dev:water-my-plants/src/components/UserForm.js
 
   return (
     <>

@@ -91,7 +91,9 @@ const initialUser = {
   phoneNumber: "",
 };
 
+
 const UserCard = () => {
+
   const [editing, setEditing] = useState(false);
   const [userToEdit, setUserToEdit] = useState(initialUser);
   const { user, fetchUser } = useContext(UserContext);
@@ -205,26 +207,29 @@ const UserCard = () => {
       <h1 id="main-title">User Profile</h1>
       <>
         <div className="info">
-          {console.log("users", [user])}
-          {[...user] &&
-            [...user].reverse().map((u) => (
-              <div key={u.id}>
-                <span>
-                  <p>Username: {u.username}</p>
-                  <p>Password: {u.password}</p>
-                  <p>Phone Number: {u.phoneNumber}</p>
-                </span>
-                <button onClick={() => editUser(u)}>Update</button>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    deleteUser(u);
-                  }}
-                >
-                  Delete
-                </button>
-              </div>
-            ))}
+         
+        {[...user] && [...user].reverse().map((u) => (
+          <div key={u.id}>
+          <span>
+            <p>Username: {u.username}</p>
+            <p>Password: {u.password}</p>
+            <p>Phone Number: {u.phoneNumber}</p>
+          </span>
+          <button
+          onClick={() => editUser(u)} >
+            Update
+          </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              deleteUser(u);
+            }}
+          >
+            Delete
+          </button>
+          </div>
+        ))}
+
         </div>
       </>
 

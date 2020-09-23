@@ -59,7 +59,7 @@ const Header = (props) => {
           Login
         </NavLink> : <Link className="logout" to="/" onClick={() => { 
           localStorage.clear()
-         
+
           go(0)
           }}>Logout</Link>}
         <NavLink className="link" activeClassName="active" to="/signup">
