@@ -3,7 +3,6 @@ import PlantsListCard from "./PlantsListCard";
 import styled from "styled-components";
 import { PlantsContext } from "../context/PlantsContext"
 
-import axiosWithAuth from "../utils/axiosWithAuth";
 const PlantlistContainer = styled.div`
 display: flex;
 justify-content: center;
@@ -30,10 +29,6 @@ justify-content: center;
 
 const PlantList = () => {
   const {plantList} = useContext(PlantsContext)
-<<<<<<< HEAD:src/components/PlantList.js
-
-=======
->>>>>>> dev:water-my-plants/src/components/PlantList.js
 
   return (
     <>

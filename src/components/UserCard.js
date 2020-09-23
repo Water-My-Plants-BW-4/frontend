@@ -90,14 +90,8 @@ const initialUser = {
   password: "",
   phoneNumber: "",
 };
-<<<<<<< HEAD:src/components/UserCard.js
 
 const UserCard = () => {
-=======
-// user,
-const UserCard = ({ fetchUser }) => {
-  const {user} = useContext(UserContext)
->>>>>>> dev:water-my-plants/src/components/UserCard.js
   const [editing, setEditing] = useState(false);
   const [userToEdit, setUserToEdit] = useState(initialUser);
   const { user, fetchUser } = useContext(UserContext);
@@ -212,7 +206,6 @@ const UserCard = ({ fetchUser }) => {
       <>
         <div className="info">
           {console.log("users", [user])}
-<<<<<<< HEAD:src/components/UserCard.js
           {[...user] &&
             [...user].reverse().map((u) => (
               <div key={u.id}>
@@ -232,29 +225,6 @@ const UserCard = ({ fetchUser }) => {
                 </button>
               </div>
             ))}
-=======
-        {[...user] && [...user].reverse().map((u) => (
-          <div key={u.id}>
-          <span>
-            <p>Username: {u.username}</p>
-            <p>Password: {u.password}</p>
-            <p>Phone Number: {u.phoneNumber}</p>
-          </span>
-          <button
-          onClick={() => editUser(u)} >
-            Update
-          </button>
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              deleteUser(u);
-            }}
-          >
-            Delete
-          </button>
-          </div>
-        ))}
->>>>>>> dev:water-my-plants/src/components/UserCard.js
         </div>
       </>
 
