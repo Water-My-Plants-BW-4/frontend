@@ -30,10 +30,7 @@ justify-content: center;
 
 const PlantList = () => {
   const {plantList} = useContext(PlantsContext)
-<<<<<<< HEAD:src/components/PlantList.js
 
-=======
->>>>>>> dev:water-my-plants/src/components/PlantList.js
 
   return (
     <>
