@@ -7,6 +7,7 @@ import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
   const {  setAuth } = useContext(AuthContext);
+
   const defaultState = {
     username: "",
     password: "",
@@ -100,6 +101,7 @@ const Login = () => {
             onChange={handleChange}
             value={formState.username}
             label="Username"
+            required
             errors={errors}
           />
           {errors.username.length !== 0 && (
@@ -115,6 +117,7 @@ const Login = () => {
             placeholder="Password"
             value={formState.password}
             label="Password"
+            required
             errors={errors}
           />
           {errors.password.length !== 0 && (

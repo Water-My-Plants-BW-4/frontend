@@ -8,10 +8,11 @@ const UserForm = () => {
 
   const fetchUser = () => {
     axiosWithAuth()
-      .get("/users/")
+      .get("/users")
       .then((res) => {
         console.log("This is the fetchUser response", res.data);
         setUser(res.data);
+        
       })
       .catch((err) => {
         console.log("This is the fetchUser error", err.message);
@@ -20,6 +21,7 @@ const UserForm = () => {
 
   useEffect(() => {
     fetchUser();
+    
   }, []);
 
   return (

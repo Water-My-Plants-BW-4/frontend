@@ -12,11 +12,8 @@ const PlantsCardWrapper = styled.div`
   justify-content: center;
   justify-content: space-evenly;
   width: 100%;
-  height: 200px;
   font-size: 30px;
   box-sizing: border-box;
-  margin-top: 200px;
-  border: 3px solid red;
   h1 {
     text-align: center;
     margin: 150px 0 10px 0;
@@ -77,7 +74,6 @@ const PlantsCardWrapper = styled.div`
 `;
 
 const initialValue = {
-  id: Date.now(),
   nickname: "",
   species: "",
   frequency_value: "",
@@ -97,7 +93,7 @@ const PlantsCard = ({ plants, fetchPlants, user }) => {
     console.log("your plants:", plants);
     e.preventDefault();
     axiosWithAuth()
-      .post("plants", newPlant) //I will add here the info from backend
+      .post("/plants", newPlant) //I will add here the info from backend
       .then((res) => {
         console.log("The response for newPlants is:", res);
         setNewPlant(res.data);
@@ -121,7 +117,7 @@ const PlantsCard = ({ plants, fetchPlants, user }) => {
           name="nickname"
           onChange={handleChanger}
           placeholder="Plants Name"
-          value={newPlant.nickname}
+          value={newPlant.nickname || ''} 
         />
 
         <input
@@ -129,7 +125,7 @@ const PlantsCard = ({ plants, fetchPlants, user }) => {
           name="species"
           onChange={handleChanger}
           placeholder="Species Name"
-          value={newPlant.species}
+          value={newPlant.species || ''}
         />
 
         <input
@@ -137,7 +133,7 @@ const PlantsCard = ({ plants, fetchPlants, user }) => {
           name="frequency_value"
           onChange={handleChanger}
           placeholder="Frequency Value"
-          value={newPlant.frequency_value}
+          value={newPlant.frequency_value || ''}
         />
 
         <input
@@ -145,7 +141,7 @@ const PlantsCard = ({ plants, fetchPlants, user }) => {
           name="frequency_range"
           onChange={handleChanger}
           placeholder="Frequency Range "
-          value={newPlant.frequency_range}
+          value={newPlant.frequency_range || ''}
         />
 
         <button>Add A New Plant Reminder</button>

@@ -1,11 +1,10 @@
 //This component will be the parent component
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import PlantList from "./PlantList";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { PlantsContext } from "../context/PlantsContext";
-import AddPlantsForm from "./AddPlantsForm";
 
 
 const PlantsListWrapper = styled.div`
@@ -39,7 +38,7 @@ h1 {
 
 
 const PlantPage = () => {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [plantList, setPlantList] = useState([]);
   useEffect(() => {
     axiosWithAuth()

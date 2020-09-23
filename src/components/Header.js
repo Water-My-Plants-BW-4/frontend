@@ -74,6 +74,7 @@ const Header = (props) => {
         <NavLink to="/myplant">Home</NavLink>
       </div>
       <h1>{auth.message}</h1>
+      {console.log("succesmsg", auth.message)}
     </NavContainer>
   );
 };
