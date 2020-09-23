@@ -46,7 +46,7 @@ const NavContainer = styled.div`
 `;
 
 
-const Header = (props) => {
+const Header = () => {
   const { auth } = useContext(AuthContext);
 
   const {go} = useHistory();
