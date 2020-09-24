@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {useHistory} from "react-router-dom";
 import axiosWithAuth from "../utils/axiosWithAuth";
-// import { PlantContext } from '../context/UserContext';
 import styled from "styled-components";
 
 
@@ -80,7 +79,7 @@ const initialValue = {
   frequency_range: "",
 };
 
-const PlantsCard = ({ plants, fetchPlants, user }) => {
+const PlantsCard = ({ plants }) => {
   const [newPlant, setNewPlant] = useState(initialValue);
   const {push} = useHistory();
 
@@ -93,7 +92,7 @@ const PlantsCard = ({ plants, fetchPlants, user }) => {
     console.log("your plants:", plants);
     e.preventDefault();
     axiosWithAuth()
-      .post("/plants", newPlant) //I will add here the info from backend
+      .post("/plants", newPlant) 
       .then((res) => {
         console.log("The response for newPlants is:", res);
         setNewPlant(res.data);

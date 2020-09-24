@@ -92,7 +92,7 @@ const Login = () => {
   return (
     <LoginWrapper>
       <form onSubmit={formSubmit} className="childrenDiv">
-        <h1>LOG IN</h1>
+        <h1>LOG IN -Check</h1>
         <label htmlFor="username">
           <input
             type="text"
