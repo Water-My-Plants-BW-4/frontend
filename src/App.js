@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Route } from "react-router-dom";
 import Login from "./components/Login";
 import Header from "../src/components/Header";
@@ -11,28 +11,12 @@ import PlantPage from "../src/components/PlantPage";
 import SignupForm from "./components/SignUpForm";
 import styled from "styled-components";
 import img from "./img/greenleave.jpg";
-import  axiosWithAuth  from "./utils/axiosWithAuth";
 
 function App() {
   const [auth, setAuth] = useState([]);
   const [plantList, setPlantList] = useState([]);
 
   
-      
-
-  
- useEffect(() => {
-    axiosWithAuth()
-       .get("/plants")
-       .then((res) => {
-         console.log("this is the response:", res);
-         setPlantList(res.data);
-       })
-       .catch((err) => {
-         console.error("the Erros is:", err);
-       });
-   }, []);
- 
  
   
   return (
@@ -73,6 +57,14 @@ const AppWrapper = styled.div`
   box-sizing: border-box;
   outline: none;
   font-family: "Karma", sans-serif;
+
+  .spinner {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    color: #204963;
+  }
 `;
 
 export default App;
