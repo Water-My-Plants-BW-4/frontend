@@ -150,7 +150,7 @@ const UserCard = () => {
       .then((res) => {
         console.log("This is the deleteUser Response", res);
         // setUser(res.data);
-         history.push("/login");
+        history.push("/login");
         localStorage.removeItem("token")
       })
       .catch((err) => {
