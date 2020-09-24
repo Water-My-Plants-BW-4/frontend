@@ -62,9 +62,10 @@ const Header = (props) => {
          
           go(0)
           }}>Logout</Link>}
-        <NavLink className="link" activeClassName="active" to="/signup">
+       { !localStorage.getItem('token') ? 
+         <NavLink className="link" activeClassName="active" to="/signup"> 
           SignUp
-        </NavLink>
+        </NavLink> : null}
         <a
           href=" https://watermyplantsbw4.netlify.app"
         >

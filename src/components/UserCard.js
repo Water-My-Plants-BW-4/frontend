@@ -152,6 +152,7 @@ const UserCard = () => {
         // setUser(res.data);
         history.push("/login");
         localStorage.removeItem("token")
+        history.go(0)    // will cause page refresh after the user gets deleted
       })
       .catch((err) => {
         console.log("This is the deleteUser Error", err.message);
