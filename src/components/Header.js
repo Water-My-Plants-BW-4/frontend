@@ -53,7 +53,7 @@ const Header = (props) => {
 
   return (
     <NavContainer>
-      <h1>Water My Plants</h1>
+      <h1><i class="fab fa-pagelines"></i>   Water My Plants</h1>
       <div className="nav">
        {!localStorage.getItem('token') ? <NavLink className="link" activeClassName="active" to="/login">
           Login

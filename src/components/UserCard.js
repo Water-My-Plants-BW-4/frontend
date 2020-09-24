@@ -150,8 +150,8 @@ const UserCard = () => {
       .then((res) => {
         console.log("This is the deleteUser Response", res);
         // setUser(res.data);
-        fetchUser();
-        history.push("/userInfo");
+        history.push("/login");
+        localStorage.removeItem("token")
       })
       .catch((err) => {
         console.log("This is the deleteUser Error", err.message);
