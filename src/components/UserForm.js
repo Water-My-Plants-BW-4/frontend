@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import UserCard from "../components/UserCard";
 import { UserContext } from "../context/UserContext";
 
 const UserForm = () => {
-  const [user, setUser] = useState([]);
+const { user, setUser} = useContext(UserContext);
 
   const fetchUser = () => {
     axiosWithAuth()
@@ -12,7 +12,6 @@ const UserForm = () => {
       .then((res) => {
         console.log("This is the fetchUser response", res.data);
         setUser(res.data);
-        
       })
       .catch((err) => {
         console.log("This is the fetchUser error", err.message);
@@ -21,16 +20,11 @@ const UserForm = () => {
 
   useEffect(() => {
     fetchUser();
-    
   }, []);
 
   return (
     <>
-      <div>
-        <UserContext.Provider value={{ user, fetchUser }}>
-          <UserCard />
-        </UserContext.Provider>
-      </div>
+        <UserCard user={user} fetchUser={fetchUser} />
     </>
   );
 };
