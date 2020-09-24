@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Route } from "react-router-dom";
 import Login from "./components/Login";
 import Header from "../src/components/Header";
@@ -50,6 +50,14 @@ const AppWrapper = styled.div`
   box-sizing: border-box;
   outline: none;
   font-family: "Karma", sans-serif;
+
+  .spinner {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    color: #204963;
+  }
 `;
 
 export default App;

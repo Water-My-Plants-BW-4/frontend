@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import styled from "styled-components";
-
 
 const PlantsCardWrapper = styled.div`
   display: flex;
@@ -81,22 +80,21 @@ const initialValue = {
 
 const PlantsCard = ({ plants }) => {
   const [newPlant, setNewPlant] = useState(initialValue);
-  const {push} = useHistory();
+  const { push } = useHistory();
 
   const handleChanger = (e) => {
-    setNewPlant({ ...newPlant,
-       [e.target.name]: e.target.value });
+    setNewPlant({ ...newPlant, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     console.log("your plants:", plants);
     e.preventDefault();
     axiosWithAuth()
-      .post("/plants", newPlant) 
+      .post("/plants", newPlant)
       .then((res) => {
         console.log("The response for newPlants is:", res);
         setNewPlant(res.data);
-       push("/myplant")
+        push("/myplant");
       })
       .catch((err) => console.log("NewPlants data error is:", err.message));
     setNewPlant({
@@ -116,7 +114,7 @@ const PlantsCard = ({ plants }) => {
           name="nickname"
           onChange={handleChanger}
           placeholder="Plants Name"
-          value={newPlant.nickname || ''} 
+          value={newPlant.nickname || ""}
         />
 
         <input
@@ -124,7 +122,7 @@ const PlantsCard = ({ plants }) => {
           name="species"
           onChange={handleChanger}
           placeholder="Species Name"
-          value={newPlant.species || ''}
+          value={newPlant.species || ""}
         />
 
         <input
@@ -132,7 +130,7 @@ const PlantsCard = ({ plants }) => {
           name="frequency_value"
           onChange={handleChanger}
           placeholder="Frequency Value"
-          value={newPlant.frequency_value || ''}
+          value={newPlant.frequency_value || ""}
         />
 
         <input
@@ -140,7 +138,7 @@ const PlantsCard = ({ plants }) => {
           name="frequency_range"
           onChange={handleChanger}
           placeholder="Frequency Range "
-          value={newPlant.frequency_range || ''}
+          value={newPlant.frequency_range || ""}
         />
 
         <button>Add A New Plant Reminder</button>

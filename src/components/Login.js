@@ -6,7 +6,7 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
-  const {  setAuth } = useContext(AuthContext);
+  const { setAuth } = useContext(AuthContext);
 
   const defaultState = {
     username: "",
@@ -23,9 +23,6 @@ const Login = () => {
     username: Yup.string().required("Please provide username."),
     password: Yup.string().required("Please enter a correct Password"),
   });
-
- 
-  
 
   //this is use for the onsubmit function
   const formSubmit = (e) => {
@@ -50,10 +47,9 @@ const Login = () => {
       })
       .catch((err) => {
         console.log("This is the Error", err);
-        alert("Please signin or signup first")
+        alert("Please signin or signup first");
       });
   };
-  
 
   const validateChange = (e) => {
     //this allows react to keep the event object to play nice with async op
@@ -86,8 +82,6 @@ const Login = () => {
     });
     validateChange(e);
   };
-
-  
 
   return (
     <LoginWrapper>
@@ -124,9 +118,10 @@ const Login = () => {
             <p className="error">{errors.password}</p>
           )}
         </label>
-        <button type="submit" onClick={(e) => e.stopPropagation()}>SUBMIT</button>
+        <button type="submit" onClick={(e) => e.stopPropagation()}>
+          SUBMIT
+        </button>
         {/* Logout will only display if the user is logged in */}
-
 
         <div className="new-account">
           <p>Not registered yet?</p>
@@ -138,7 +133,6 @@ const Login = () => {
 };
 
 const LoginWrapper = styled.div`
-
   display: flex;
   flex-direction: column;
   align-content: center;
