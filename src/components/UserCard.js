@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { UserContext } from "../context/UserContext";
+
 
 const UserWrapper = styled.div`
   display: flex;
@@ -113,10 +113,10 @@ const initialUser = {
   phoneNumber: "",
 };
 
-const UserCard = () => {
+const UserCard = ({ user, fetchUser }) => {
   const [editing, setEditing] = useState(false);
   const [userToEdit, setUserToEdit] = useState(initialUser);
-  const { user, fetchUser } = useContext(UserContext);
+ 
 
   let history = useHistory();
 
