@@ -72,6 +72,8 @@ const PlantsCardWrapper = styled.div`
 `;
 
 const initialValue = {
+ 
+  user_id: localStorage.getItem("userID"),
   nickname: "",
   species: "",
   frequency_value: "",
@@ -81,6 +83,7 @@ const initialValue = {
 const PlantsCard = ({ plants }) => {
   const [newPlant, setNewPlant] = useState(initialValue);
   const { push } = useHistory();
+ 
 
   const handleChanger = (e) => {
     setNewPlant({ ...newPlant, [e.target.name]: e.target.value });
@@ -89,6 +92,7 @@ const PlantsCard = ({ plants }) => {
   const handleSubmit = (e) => {
     console.log("your plants:", plants);
     e.preventDefault();
+    console.log("newPlant", newPlant)
     axiosWithAuth()
       .post("/plants", newPlant)
       .then((res) => {
