@@ -38,10 +38,11 @@ const PlantsListWrapper = styled.div`
 const PlantPage = () => {
 
   const [plantList, setPlantList] = useState([]);
+  const userId = localStorage.getItem("user_id")
 
   useEffect(() => {
     axiosWithAuth()
-      .get("/plants")
+      .get(`plants/${userId}`)
       .then((res) => {
         console.log("this is the response:", res);
         setPlantList(res.data);
