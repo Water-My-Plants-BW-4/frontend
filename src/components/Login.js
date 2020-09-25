@@ -4,9 +4,13 @@ import * as Yup from "yup";
 import { useHistory, Link } from "react-router-dom";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { AuthContext } from "../context/AuthContext";
+import { useAlert } from 'react-alert'
+
 
 const Login = () => {
   const { setAuth } = useContext(AuthContext);
+
+  const alert = useAlert()
 
   const defaultState = {
     username: "",
@@ -47,7 +51,7 @@ const Login = () => {
       })
       .catch((err) => {
         console.log("This is the Error", err);
-        alert("Please signin or signup first");
+        alert.error("Please signin or signup first");
       });
   };
 
@@ -143,7 +147,7 @@ const LoginWrapper = styled.div`
   font-size: 30px;
   box-sizing: border-box;
   margin-top: 200px;
-  
+
   h1 {
     text-align: center;
     margin: 120px 0 -5px 0;
@@ -172,6 +176,7 @@ const LoginWrapper = styled.div`
 
   .childrenDiv {
     box-sizing: border-box;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -180,7 +185,6 @@ const LoginWrapper = styled.div`
     margin-right: 40%;
     width: auto;
     height: 400px;
-  
   }
   button {
     margin: 50px 5px 0 0;
