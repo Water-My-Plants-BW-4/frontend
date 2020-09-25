@@ -73,7 +73,7 @@ const PlantsCardWrapper = styled.div`
 
 const initialValue = {
  
-  
+  user_id: localStorage.getItem("userID"),
   nickname: "",
   species: "",
   frequency_value: "",
