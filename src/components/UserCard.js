@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
@@ -254,7 +254,7 @@ const UserCard = ({ user, fetchUser }) => {
                   >
                     Delete
                   </button>
-                  <hr class="rounded"></hr>
+                  <hr className="rounded"></hr>
                 </div>
               ))}
           </div>
