@@ -228,35 +228,33 @@ const UserCard = ({ user, fetchUser }) => {
           <h1 id="main-title">User Profile</h1>
 
           <div className="info">
-            {console.log("users", [user])}
-            {[...user] &&
-              [...user].reverse().map((u) => (
-                <div key={u.id}>
+           
+                <div>
                   <p>
                     <span>Username: </span>
-                    {u.username}
+                    {user.username}
                   </p>
                   <p>
                     <span>Password: </span>
-                    {u.password}
+                    {user.password}
                   </p>
                   <p>
                     <span>Phone Number: </span>
-                    {u.phoneNumber}
+                    {user.phoneNumber}
                   </p>
 
-                  <button onClick={() => editUser(u)}>Update</button>
+                  <button onClick={() => editUser(user)}>Update</button>
                   <button
                     onClick={(e) => {
-                      e.stopPropagation();
-                      deleteUser(u);
+                      e.stopPropagation(e);
+                      deleteUser(user);
                     }}
                   >
                     Delete
                   </button>
                   <hr className="rounded"></hr>
                 </div>
-              ))}
+            
           </div>
         </>
       )}
