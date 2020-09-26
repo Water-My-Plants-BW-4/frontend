@@ -43,7 +43,7 @@ const PlantPage = () => {
 
   useEffect(() => {
     axiosWithAuth()
-      .get(`/plants/${user_id}`)
+      .get(`/plants/${user_id}/`)
       .then((res) => {
         console.log("this is the response:", res);
         setPlantList(res.data);

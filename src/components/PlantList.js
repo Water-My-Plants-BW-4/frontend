@@ -33,7 +33,9 @@ const PlantList = () => {
     <>
       <PlantlistContainer>
         <ol>
-          {plantList.map((plants, i) => (
+          
+          {plantList?.map((plants, i) => (
+            
             <div key={i}>
               <PlantsListCard
                 i={i}

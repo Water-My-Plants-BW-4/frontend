@@ -25,13 +25,7 @@ function App() {
           <PlantsContext.Provider value={{ plantList, setPlantList }}>
             <Header />
             {/* Below Route is for the default URL */}
-            {/* <Route exact path="/" component={Login} />
-            <PrivateRoute exact path="/" component={PlantPage} /> */}
-            {localStorage.getItem("token") ? (
-              <PrivateRoute exact path="/" component={PlantPage} />
-            ) : (
-              <Route exact path="/" component={Login} />
-            )}
+            <Route exact path="/" component={Login} />
             <Route exact path="/login" component={Login} />
             <Route path="/signup" component={SignupForm} />
             <PrivateRoute exact path="/userInfo" component={UserForm} />

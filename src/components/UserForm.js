@@ -9,6 +9,8 @@ const id = localStorage.getItem("userID");
 
   const fetchUser = () => {
     axiosWithAuth()
+    //to get all users list
+      // .get('users')
       .get(`/users/${id}`)
       .then((res) => {
         console.log("This is the fetchUser response", res.data);

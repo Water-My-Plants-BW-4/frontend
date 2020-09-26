@@ -228,39 +228,71 @@ const UserCard = ({ user, fetchUser }) => {
         <>
           <h1 id="main-title">User Profile</h1>
 
+        {/* to get all users list */}
+{/* 
           <div className="info">
-           
-                <div>
+              {[...user].reverse().map((u) => (
+                <div key={u.id}>
                   <p>
                     <span>Username: </span>
-                    {user.username}
+                    {u.username}
                   </p>
                   <p>
                     <span>Password: </span>
-                    {user.password}
+                    {u.password}
                   </p>
                   <p>
                     <span>Phone Number: </span>
-                    {user.phoneNumber}
+                    {u.phoneNumber}
                   </p>
 
-                  <button onClick={() => editUser(user)}>Update</button>
+                  <button onClick={() => editUser(u)}>Update</button>
                   <button
                     onClick={(e) => {
-                      e.stopPropagation(e);
-                      deleteUser(user);
+                      e.stopPropagation();
+                      deleteUser(u);
                     }}
                   >
                     Delete
                   </button>
                   <hr className="rounded"></hr>
                 </div>
-            
+              ))}
           </div>
         </>
-      )}
+      )} */}
 
-      {/* <div className="spacer" /> */}
+          <div className="info">
+            <div>
+              <p>
+                <span>Username: </span>
+                {user.username}
+              </p>
+              <p>
+                <span>Password: </span>
+                {user.password}
+              </p>
+              <p>
+                <span>Phone Number: </span>
+                {user.phoneNumber}
+              </p>
+
+              <button onClick={() => editUser(user)}>Update</button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation(e);
+                  deleteUser(user);
+                }}
+              >
+                Delete
+              </button>
+              <hr className="rounded"></hr>
+            </div>
+          </div>
+        </>
+      )} 
+
+      {/* <div className="spacer" />*/}
     </UserWrapper>
   );
 };

@@ -45,46 +45,36 @@ const NavContainer = styled.div`
 }
 `;
 
+
 const Header = (props) => {
   const { auth } = useContext(AuthContext);
 
-  const { go } = useHistory();
+  const {go} = useHistory();
 
   return (
     <NavContainer>
-      <h1>
-        <i className="fab fa-pagelines"></i> Water My Plants
-      </h1>
+      <h1>Water My Plants</h1>
       <div className="nav">
-        {!localStorage.getItem("token") ? (
-          <NavLink className="link" activeClassName="active" to="/login">
-            Login
-          </NavLink>
-        ) : (
-          <Link
-            className="logout"
-            to="/"
-            onClick={() => {
-              localStorage.clear();
-
-              go(0);
-            }}
-          >
-            Logout
-          </Link>
-        )}
-        {!localStorage.getItem("token") ? (
-          <NavLink className="link" activeClassName="active" to="/signup">
-            SignUp
-          </NavLink>
-        ) : null}
-        <a href=" https://watermyplantsbw4.netlify.app">
+       {!localStorage.getItem('token') ? <NavLink className="link" activeClassName="active" to="/login">
+          Login
+        </NavLink> : <Link className="logout" to="/" onClick={() => { 
+          localStorage.clear()
+         
+          go(0)
+          }}>Logout</Link>}
+        <NavLink className="link" activeClassName="active" to="/signup">
+          SignUp
+        </NavLink>
+        <a
+          href=" https://watermyplantsbw4.netlify.app"
+        >
           <span>About Us</span>
         </a>
-
+        
         <NavLink to="/myplant">Home</NavLink>
       </div>
       <h1>{auth.message}</h1>
+      {console.log("succesmsg", auth.message)}
     </NavContainer>
   );
 };
