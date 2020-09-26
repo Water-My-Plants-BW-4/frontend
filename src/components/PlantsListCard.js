@@ -106,12 +106,13 @@ const PlantListCard = (props) => {
    const { go } = useHistory();
    const [editing, setEditing] = useState(false);
    const [editPlant, setEditPlant] = useState(defaultValue)
+   const user_id = localStorage.getItem("userID");
 
    const getPlants = (id) => {
    axiosWithAuth()
-   .get(`/plants/${id}`)
+   .get(`/plants/${user_id}/${id}`)
    .then((res) => {
-     console.log("getplants ran", res.data[0].nickname)
+     console.log("getplants ran", res)
     setEditPlant({...editPlant, 
       nickname: res.data[0].nickname,
       species: res.data[0].species, 
