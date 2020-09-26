@@ -47,6 +47,7 @@ const PlantPage = () => {
       .then((res) => {
         console.log("this is the response:", res);
         setPlantList(res.data);
+        
  
       })
       .catch((err) => {
