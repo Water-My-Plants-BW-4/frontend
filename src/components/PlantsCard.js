@@ -71,18 +71,26 @@ const PlantsCardWrapper = styled.div`
   }
 `;
 
-const initialValue = {
- 
-  
-  nickname: "",
-  species: "",
-  frequency_value: "",
-  frequency_range: "",
-};
+
 
 const PlantsCard = ({ plants }) => {
+
+  const id = localStorage.getItem("userID")
+
+  const initialValue = {
+    user_id: id,
+    nickname: "",
+    species: "",
+    frequency_value: "",
+    frequency_range: "",
+  };
+
   const [newPlant, setNewPlant] = useState(initialValue);
   const { push } = useHistory();
+
+  
+
+
  
 
   const handleChanger = (e) => {

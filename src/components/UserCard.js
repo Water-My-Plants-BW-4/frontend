@@ -152,6 +152,7 @@ const UserCard = ({ user, fetchUser }) => {
         // setUser(res.data);
         history.push("/login");
         localStorage.removeItem("token")
+        localStorage.removeItem("userID")
         history.go(0)    // will cause page refresh after the user gets deleted
       })
       .catch((err) => {
