@@ -45,8 +45,8 @@ const Login = () => {
         const data = res.data;
         console.log("form submitted success", data);
         localStorage.setItem("token", data.token);
-        JSON.stringify(localStorage.setItem("userID", data.user_id));
-        console.log("this is user_id", data.user_id)
+         localStorage.setItem("userID", JSON.stringify(data.user_id));
+        console.log("this is user_id", data.user_id);
         //I set setAuth here so it can retrieve the user data to the DOM
         setAuth(data);
         push("/myplant");
